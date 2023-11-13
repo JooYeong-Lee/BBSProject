@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
+    <link rel="stylesheet" href="css/font.css"> <!-- 폰트 css -->
     <style>
         body {
             margin: 0;
@@ -17,27 +18,98 @@
             background-color: white;
             overflow: hidden;
         }
-
-        #left_page {
+        
+		/*프로필 + 카테고리*/
+        #left_page { 
             width: 30%;
             height: 100%;
             float: left;
             border-right: 3px solid black;
         }
-
+		
+		/*프로필*/
         #profile {
-            width: 100%;
-            height: 60%;
-            background-color: lightgrey;
-            border-bottom: 3px solid black;
-        }
-
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: flex-end; /*텍스트를 프로필의 아래쪽 정렬*/
+		    width: 100%;
+		    height: 60%;
+		    background-color: #E3E3E3;
+		    border-bottom: 3px solid black;
+		}
+		.line1 {
+		    display:flex;
+		    justify-content: space-between; /*수평 정렬 되도록*/
+		    align-items: center;
+		    margin-left: 20px;
+		}
+		
+		.line2 {
+		    display:flex;
+		    justify-content: space-between; /*수평 정렬 되도록*/
+		    align-items: center;
+		    margin-left: 20px;
+		    margin-top: -35px;
+		    margin-bottom: 50px;
+		}
+		
+		.line1 a, .line2 a {
+			font-family: 'LINESeedKR';
+			margin-left: 15px;
+		    margin-right: auto;
+		    color:black;
+		}
+        
+        .big_title {
+			font-family: 'LINESeedKR-Bd';
+			font-size: 40px;
+			font-weight: bold;
+			color: black;
+		}
+		
+		.bio {
+			font-family: 'LINESeedKR';
+			font-size: 20px;
+			color: black;
+		}
+		
+		/* 카테고리 */
         #category {
             width: 100%;
-            height: 40%;
-            background-color: grey;
+            height: 100%;
+            background-color: #E3CCCD;
+            padding-top: 20px;
+            
         }
-
+        
+        .category_h1 {
+			font-family: 'LINESeedKR-Bd';
+			font-size: 40px;
+			font-weight: bold;
+			color: black;
+			margin: 0;
+			margin-left: 20px;
+			margin-bottom: 5px;
+		}
+		
+		.category_list{
+			display: block;
+			font-family: 'LINESeedKR';
+			font-size: 20px;
+			color: black;
+			margin-left: 20px;
+			margin-bottom: 3px;
+			text-decoration: none;
+		}
+		
+		.etc{
+			font-family: 'LINESeedKR';
+			font-size: 20px;
+			color: grey;
+			margin-left: 20px;
+		}
+		
+		/*메인 페이지(우측 페이지 전체)*/
         #main_page {
             width: 70%;
             height: 100%;
@@ -82,10 +154,23 @@
     <div id="content">
         <div id="left_page">
             <div id="profile">
-
+				<div class="line1">
+					<p class="big_title">OO님의 노트</p>
+					<a href="#">수정</a>
+				</div>
+				<div class="line2">
+					<p class="bio">한줄 소개 입니다.</p>
+					<a href="#">수정</a>
+				</div>
             </div>
             <div id="category">
-
+				<p class="category_h1">카테고리</p>
+				<a class="category_list" href="#">• 주제1</a><br>
+				<a class="category_list" href="#">• 주제2</a><br>
+				<a class="category_list" href="#">• 주제3</a><br>
+				<a class="category_list" href="#">• 주제4</a><br>
+				<a class="category_list" href="#">• 주제5</a><br>
+				<a class="etc" href="#">더보기</a>
             </div>
         </div>
 
