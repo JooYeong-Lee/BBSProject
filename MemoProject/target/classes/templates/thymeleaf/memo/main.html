@@ -94,7 +94,33 @@
 		    justify-content: center;
 		    align-items: center;
 		    margin-right: auto;
+		    cursor: pointer;
 		}
+		
+		.category-popup {
+            position: fixed;
+            top: 0;
+            left: 20%; /* left-box의 오른쪽에 위치하도록 조정 */
+            width: 30%;
+            height: 100%;
+            background-color: rgba(169, 169, 169, 0.7); /* 회색 반투명 배경 */
+            display: none;
+        }
+
+        .category-popup-content {
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+        }
 		
 		.header-title {
 		    flex-grow: 1;
@@ -205,8 +231,19 @@
         <div id="main_page">
             <div id="header">
 				<div class="category">
-					<img src="/imgs/category.png" alt="Category" class="category-btn">
-				</div>
+                    <img src="/imgs/category.png" alt="Category" class="category-btn" onclick="toggleCategoryPopup()">
+                    <div class="category-popup" id="categoryPopup">
+                        <div class="category-popup-content">
+                            <!-- 카테고리 내용을 추가할 수 있습니다. -->
+                            Category 1
+                            <br>
+                            Category 2
+                            <br>
+                            Category 3
+                        </div>
+                        <span class="close-btn" onclick="closeCategoryPopup()">×</span>
+                    </div>
+                </div>
 				<div class="header-title">
 				    <p>BBS</p>
 				</div>
@@ -228,6 +265,17 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        function toggleCategoryPopup() {
+            var categoryPopup = document.getElementById("categoryPopup");
+            categoryPopup.style.display = (categoryPopup.style.display === "block") ? "none" : "block";
+        }
+        function closeCategoryPopup() {
+        var categoryPopup = document.getElementById("categoryPopup");
+        categoryPopup.style.display = "none";
+    }
+    </script>
 </body>
 
 </html>
