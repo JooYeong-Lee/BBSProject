@@ -21,36 +21,29 @@
         
 		/*프로필 + 카테고리*/
         #left_page { 
-            width: 30%;
-            height: 100%;
-            float: left;
-            border-right: 3px solid black;
-        }
-		
-		/*프로필*/
-        #profile {
+            width: 20%;
+		    height: 100%;
+		    float: left;
 		    display: flex;
 		    flex-direction: column;
-		    justify-content: flex-end; /*텍스트를 프로필의 아래쪽 정렬*/
-		    width: 100%;
-		    height: 60%;
-		    background-color: #E3E3E3;
-		    border-bottom: 3px solid black;
-		}
+		    background-color: rgb(224, 250, 248);
+		    border-right: 3px solid black;
+		    align-items: center;
+        }
 		.line1 {
 		    display:flex;
 		    justify-content: space-between; /*수평 정렬 되도록*/
 		    align-items: center;
-		    margin-left: 20px;
+		    margin-left: 5%;
+		    margin-top: 100%;
 		}
 		
 		.line2 {
 		    display:flex;
 		    justify-content: space-between; /*수평 정렬 되도록*/
 		    align-items: center;
-		    margin-left: 20px;
-		    margin-top: -35px;
-		    margin-bottom: 50px;
+		    margin-left: 5%;
+		    margin-top: -10%;
 		}
 		
 		.line1 a, .line2 a {
@@ -72,56 +65,102 @@
 			font-size: 20px;
 			color: black;
 		}
-		
-		/* 카테고리 */
-        #category {
-            width: 100%;
-            height: 100%;
-            background-color: #E3CCCD;
-            padding-top: 20px;
-            
-        }
-        
-        .category_h1 {
-			font-family: 'LINESeedKR-Bd';
-			font-size: 40px;
-			font-weight: bold;
-			color: black;
-			margin: 0;
-			margin-left: 20px;
-			margin-bottom: 5px;
-		}
-		
-		.category_list{
-			display: block;
-			font-family: 'LINESeedKR';
-			font-size: 20px;
-			color: black;
-			margin-left: 20px;
-			margin-bottom: 3px;
-			text-decoration: none;
-		}
-		
-		.etc{
-			font-family: 'LINESeedKR';
-			font-size: 20px;
-			color: grey;
-			margin-left: 20px;
-		}
+	
 		
 		/*메인 페이지(우측 페이지 전체)*/
         #main_page {
-            width: 70%;
+            width: 80%;
             height: 100%;
             float: right;
         }
 
         #header {
-            width: 100%;
-            height: 10%;
-            background-color: white;
-            border-bottom: 3px solid black;
-        }
+		    width: 100%;
+		    height: 10%;
+		    background-color: white;
+		    border-bottom: 3px solid black;
+		    padding: 20px;
+		    position: relative; 
+		    display: flex; 
+		    align-items: center; 
+		}
+		
+		.category-btn {
+			width: 50px;
+		  	height: 50px;
+		    background-color: #fff;
+		    border-radius: 50%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    margin-right: auto;
+		}
+		
+		.header-title {
+		    flex-grow: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    
+		}
+		
+		.header-title p {
+		    font-family: 'LINESeedKR-Bd';
+		    font-size: 35px; /* 필요에 따라 폰트 크기를 조절할 수 있습니다. */
+		    font-weight: bold;
+		    color: #51e3d4;
+		    margin: 0;
+		}
+		
+		.search-box {
+		    padding: 10px;
+		    position: relative; 
+		    height: 30px;
+		    background-color: #fff;
+		    border: 1px solid #51e3d4;
+		    border-radius: 30px;
+		    transition: 0.4s;
+		    width: 30px;
+		    top: 25%; 
+		    transform: translateY(-50%);
+		    margin-left: auto;
+		    right: 3%;
+		}
+		.search-box:hover{
+		  box-shadow: 0px 0px .5px 1px #51e3d4;
+		  width: 500px;
+		  right: 3%;
+		}
+		.search-btn{
+		  text-decoration: none;
+		  float: right;
+		  width: 30px;
+		  height: 30px;
+		  background-color: #fff;
+		  border-radius: 50%;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+		.search-box:hover > .search-btn{
+		  background-color: #fff;
+		}
+		.search-txt{
+		  display: flex;
+		  padding: 0;
+		  width: 0px;
+		  border:none;
+		  background: none;
+		  outline: none;
+		  float: left;
+		  font-size: 1rem;
+		  line-height: 30px;
+		  transition: .4s;
+		}
+		.search-box:hover > .search-txt{
+		  width: 240px;
+		  padding: 0 6px;
+		}
 
         #list {
             width: 100%;
@@ -153,30 +192,30 @@
 <body>
     <div id="content">
         <div id="left_page">
-            <div id="profile">
-				<div class="line1">
-					<p class="big_title">OO님의 노트</p>
-					<a href="#">수정</a>
-				</div>
-				<div class="line2">
-					<p class="bio">한줄 소개 입니다.</p>
-					<a href="#">수정</a>
-				</div>
-            </div>
-            <div id="category">
-				<p class="category_h1">카테고리</p>
-				<a class="category_list" href="#">• 주제1</a><br>
-				<a class="category_list" href="#">• 주제2</a><br>
-				<a class="category_list" href="#">• 주제3</a><br>
-				<a class="category_list" href="#">• 주제4</a><br>
-				<a class="category_list" href="#">• 주제5</a><br>
-				<a class="etc" href="#">더보기</a>
-            </div>
+			<div class="line1">
+				<p class="big_title">Unknown User</p>
+				<a href="#">수정</a>
+			</div>
+			<div class="line2">
+				<p class="bio">한줄 소개 입니다.</p>
+				<a href="#">수정</a>
+			</div>
         </div>
 
         <div id="main_page">
             <div id="header">
-
+				<div class="category">
+					<img src="/imgs/category.png" alt="Category" class="category-btn">
+				</div>
+				<div class="header-title">
+				    <p>BBS</p>
+				</div>
+				<div class="search-box">
+			      <input type="text" class="search-txt" name=""placeholder="Search by title">
+			      <img src="/imgs/search.png" alt="Search Icon" class="search-btn">
+			        <i class="fas fa-search"></i>
+			      </a>
+			    </div>
             </div>
             <div id="list">
                 <div class="memo">게시글 1</div>
