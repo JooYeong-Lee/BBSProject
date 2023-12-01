@@ -230,6 +230,31 @@
 		  padding: 0 6px;
 		}
 		
+		/*게시글 내용*/
+		.post {
+			margin: 10%;
+		}
+		.category-name {
+			font-size: 25px;
+			margin-top: -10px;
+			margin-bottom: -10px;
+		}
+		.title {
+			font-size: 45px;
+			margin-top: -30px;
+			margin-bottom: -50px;
+		}
+		.user-date {
+		    font-size: 20px;
+		    display: flex;
+		    align-items: center; 
+		    margin-top: -40px;
+			margin-bottom: -10px;
+		   
+		}
+		.in-content {
+			font-size: 20px;
+		}
 		
     </style>
 </head>
@@ -275,7 +300,16 @@
 			      </a>
 			    </div>
             </div>
-            
+            <div id="post">
+				<div class="category-name"><p>Category1</p></div>
+				<div class="title"><p>First Post</p></div>
+				<div class="user-date">
+					<p class="user">unknown user</p>
+					<p>&nbsp;|&nbsp;</p> <!-- 구분선 태그(지우지 말 것)-->
+					<p class="date">2023.12.01</p>
+				</div>
+				<div class="in-content"><p>내용입니다</p></div>
+			</div>
         </div>
     </div>
     
