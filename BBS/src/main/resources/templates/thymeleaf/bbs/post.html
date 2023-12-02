@@ -231,21 +231,24 @@
 		}
 		
 		/*게시글 내용*/
-		.post {
-			margin: 10%;
-		}
 		.category-name {
-			font-size: 25px;
+			font-family: 'LINESeedKR';
+			margin: 20px;
+			font-size: 20px;
 			margin-top: -10px;
 			margin-bottom: -10px;
 		}
 		.title {
-			font-size: 45px;
+			font-family: 'LINESeedKR';
+			margin: 20px;
+			font-size: 40px;
 			margin-top: -30px;
 			margin-bottom: -50px;
 		}
 		.user-date {
-		    font-size: 20px;
+			font-family: 'LINESeedKR';
+			margin: 20px;
+		    font-size: 15px;
 		    display: flex;
 		    align-items: center; 
 		    margin-top: -40px;
@@ -253,9 +256,34 @@
 		   
 		}
 		.in-content {
+			margin: 20px;
+			height: 500px;
 			font-size: 20px;
 		}
 		
+		hr {
+			margin: 20px;
+			width: 97%;
+		}
+		
+		.comment-iddate {
+			font-family: 'LINESeedKR-Bd';
+			margin: 20px;
+		    font-size: 20px;
+		    display: flex;
+		    align-items: center; 
+		    margin-top: -20px;
+			margin-bottom: -10px;
+		}
+		.comment-post {
+			font-family: 'LINESeedKR';
+			margin: 20px;
+		    font-size: 15px;
+		    display: flex;
+		    align-items: center;
+		    margin-top: -10px; 
+			margin-bottom: -10px;
+		}
     </style>
 </head>
 
@@ -308,7 +336,18 @@
 					<p>&nbsp;|&nbsp;</p> <!-- 구분선 태그(지우지 말 것)-->
 					<p class="date">2023.12.01</p>
 				</div>
+				<hr>
 				<div class="in-content"><p>내용입니다</p></div>
+				<hr>
+				<div class="comment-box">
+					<div class="comment-iddate">
+						<p class="comment-id">unknown user</p>
+						<p>&nbsp;|&nbsp;</p> <!-- 구분선 태그(지우지 말 것)-->
+						<p class="comment-date">2023.12.01</p>
+					</div>
+					<p class="comment-post">댓글 예시입니다.</p>
+					<hr>
+				</div>
 			</div>
         </div>
     </div>
