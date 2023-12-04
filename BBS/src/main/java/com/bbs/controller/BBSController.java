@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BBSController {
 	@GetMapping("/main")
     public String main() {
-        return "/bbs/main"; 
+        return "bbs/main"; 
     }
 	@GetMapping("/write")
     public String write() {
-        return "/bbs/write"; 
+        return "bbs/write"; 
     }
 	@GetMapping("/post")
     public String post() {
-        return "/bbs/post"; 
+        return "bbs/post"; 
     }
 }
