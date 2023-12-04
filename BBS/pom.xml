@@ -47,6 +47,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Spring Security -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-security</artifactId>
+	    </dependency>
+		
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>

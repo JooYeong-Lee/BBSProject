@@ -27,7 +27,7 @@ public class BBSController {
 	
 	@GetMapping("/main")
     public String main(Model model) {
-        return "bbs/main"; 
+        return "/bbs/main"; 
     }
 	
 	@GetMapping("/write")
@@ -40,22 +40,22 @@ public class BBSController {
 			userId = "Unknown User";
 		}
 			
-        return "bbs/write"; 
+        return "/bbs/write"; 
     }
 	
 	@GetMapping("/post")
     public String post() {
-        return "bbs/post"; 
+        return "/bbs/post"; 
     }
 	
 	@GetMapping("/join")
 	public String join() {
-		return "bbs/join";
+		return "/bbs/join";
 	}
 	
 	@GetMapping("/login")
 	public String login() {
-		return "bbs/login";
+		return "/bbs/login";
 	}
 	
 	@PostMapping("/join_clear")
