@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bbs.DB.userDB;
@@ -51,6 +52,12 @@ public class BBSController {
 	@GetMapping("/join")
 	public String join() {
 		return "/bbs/join";
+	}
+	
+	@PostMapping("/check_id") //아이디 중복체크(ajax)
+	@ResponseBody
+	public boolean idCheck(@RequestParam("id") String id) {
+		return userservice.finduser(id);
 	}
 	
 	@GetMapping("/login")
