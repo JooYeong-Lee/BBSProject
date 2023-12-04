@@ -12,11 +12,11 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class BBSController {
 	@GetMapping("/main")
-    public String main() {
+    public String main(Model model) {
         return "bbs/main"; 
     }
 	@GetMapping("/write")
-    public String write(Model model, HttpServletRequest req) {
+    public String write(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		String userId;
 		if(session != null) { // 로그인이 상태면
@@ -36,7 +36,16 @@ public class BBSController {
 	public String write_clear(@RequestParam String category,
 				              @RequestParam String title,
 				              @RequestParam String content,
-				              @RequestParam("SelectFile") MultipartFile file) {
+				              @RequestParam("SelectFile") MultipartFile file,
+				              HttpServletRequest req) {
+		//bbsDB에 id, title, category, date, content 들어가야함
+		HttpSession session = req.getSession(false);
+		String userId;
+		if(session != null) { // 로그인이 상태면
+			userId = (String)session.getAttribute("user"); 
+		} else { // 로그인 상태가 아니면
+			userId = "Unknown User";
+		}
 		
 		return "redirect:/main";
 	}
