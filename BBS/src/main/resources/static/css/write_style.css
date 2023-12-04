@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+#header {
+    width: 100%;
+    height: 5%;
+    background-color: white;
+    border-bottom: 2px solid gray;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    flex-grow: 1;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.header-title p {
+    font-family: 'LINESeedKR-Bd';
+    font-size: 35px;
+    font-weight: bold;
+    color: #51e3d4;
+    margin: 0;
+}
+
+#write-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+#category-dropdown {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    box-sizing: border-box; 
+    margin-right: 69%;
+    margin-top: 30px;
+}
+
+#in-title,
+#in-content {
+    width: 80%; 
+    margin: 10px auto; 
+}
+
+#in-title {
+	margin-top: 30px;
+}
+
+#in-title textarea {
+    border: none;
+    border-bottom: 1px solid lightgray; 
+    resize: none;
+    font-family: 'LINESeedKR'; 
+    font-size: 45px;
+    outline: none; 
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+#in-content textarea {
+    border: none;
+    resize: none;
+    font-family: 'LINESeedKR'; 
+    font-size: 20px;
+    outline: none; 
+    border-bottom: 1px solid lightgray; 
+    box-sizing: border-box; 
+    height: 700px;
+    width: 100%;
+}
+
+.btn {
+    width: 80%;
+    margin: 10px auto;
+    display: flex; 
+    justify-content: space-between; 
+    
+}
+
+button{
+	font-family: 'LINESeedKR';
+	margin-left: auto;
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    
+}
+
+.post-btn {
+    background-color: #51e3d4;
+    border:none;
+    width: 120px;
+    height: 50px;
+    border-radius:30px;
+    text-align: center;
+    line-height: 50px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+.post-btn:hover {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,295 @@
+body {
+    margin: 0;
+}
+
+#content {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+/*프로필 + 카테고리*/
+#left_page { 
+    width: 20%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 250, 248);
+    border-right: 2px solid black;
+    align-items: center;
+}
+
+.camera-btn {
+	width: 35px;
+  	height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 85%;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.write-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 85%; 
+    margin-top: 110%; 
+    cursor: pointer;
+}
+
+/*big_title + 수정 버튼*/
+.line1 {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: 110%;
+}
+
+/*bio + 수정 버튼*/
+.line2 {
+    display:flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-left: 5%;
+    margin-top: -10%;
+}
+/*수정 버튼*/
+.line1 a, .line2 a {
+	font-family: 'LINESeedKR';
+	margin-left: 15px;
+    margin-right: auto;
+    color: gray;
+}
+
+/*사용자 이름(아이디)*/
+.big_title {
+	font-family: 'LINESeedKR-Bd';
+	font-size: 40px;
+	font-weight: bold;
+	color: black;
+}
+
+/*한줄소개*/
+.bio {
+	font-family: 'LINESeedKR';
+	font-size: 20px;
+	color: black;
+}
+
+/*메인 페이지(우측 페이지 전체)*/
+#main_page {
+    width: 80%;
+    height: 100%;
+    float: right;
+}
+
+#header {
+    width: 100%;
+    height: 5%;
+    background-color: white;
+    border-bottom: 2px solid black;
+    padding: 20px;
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+}
+
+/*카테고리 버튼(줄 3개 아이콘)*/
+.category-btn {
+	width: 50px;
+  	height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+/*카테고리 버튼 클릭 후 나타나는 팝업*/
+.category-popup {
+    position: fixed;
+    top: 0;
+    left: 20%;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(169, 169, 169, 0.7);
+    display: none;
+    animation: fadeInOut 0.5s ease; 
+    z-index: 2;
+}
+
+/* 페이드인/아웃 애니메이션*/
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*각 카테고리 제목*/
+.category-popup-content {
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.category-popup-content a{
+	font-family: 'LINESeedKR';
+	font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+/*카테고리 닫기 버튼*/
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+/*BBS(텍스트)*/
+.header-title {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    cursor: pointer;
+}
+
+.header-title p {
+    font-family: 'LINESeedKR-Bd';
+    font-size: 35px; 
+    font-weight: bold;
+    color: #51e3d4;
+    margin: 0;
+}
+
+/*검색창*/
+.search-box {
+    padding: 10px;
+    position: relative; 
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #51e3d4;
+    border-radius: 30px;
+    transition: 0.4s;
+    width: 30px;
+    top: 50%; 
+    transform: translateY(-50%);
+    margin-left: auto;
+    right: 3%;
+}
+
+/*검색창 애니메이션*/
+.search-box:hover{
+  box-shadow: 0px 0px .5px 1px #51e3d4;
+  width: 500px;
+  right: 3%;
+}
+
+/*검색창 버튼*/
+.search-btn{
+  text-decoration: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-box:hover > .search-btn{
+  background-color: #fff;
+}
+
+.search-txt{
+  display: flex;
+  padding: 0;
+  width: 0px;
+  border:none;
+  background: none;
+  outline: none;
+  float: left;
+  font-size: 1rem;
+  line-height: 30px;
+  transition: .4s;
+}
+
+.search-box:hover > .search-txt{
+  width: 240px;
+  padding: 0 6px;
+}
+
+/*게시글 내용*/
+.category-name {
+	font-family: 'LINESeedKR';
+	margin: 20px;
+	font-size: 20px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+
+.title {
+	font-family: 'LINESeedKR';
+	margin: 20px;
+	font-size: 40px;
+	margin-top: -30px;
+	margin-bottom: -50px;
+}
+
+.user-date {
+	font-family: 'LINESeedKR';
+	margin: 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: center; 
+    margin-top: -40px;
+	margin-bottom: -10px;
+}
+
+.in-content {
+	margin: 20px;
+	height: 500px;
+	font-size: 20px;
+}
+
+hr {
+	margin: 20px;
+	width: 97%;
+}
+
+.comment-iddate {
+	font-family: 'LINESeedKR-Bd';
+	margin: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center; 
+    margin-top: -20px;
+	margin-bottom: -10px;
+}
+
+.comment-post {
+	font-family: 'LINESeedKR';
+	margin: 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    margin-top: -10px; 
+	margin-bottom: -10px;
+}
