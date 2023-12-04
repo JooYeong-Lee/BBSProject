@@ -1,4 +1,4 @@
-package com.bbs.user;
+package com.bbs.DB;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,8 +10,7 @@ public class userDB {
 	
 	@Id
 	private String id;
-	private String pw;
-	private String name;
+	private String pwd;
 	
 	public String getId() {
 		return id;
@@ -20,17 +19,9 @@ public class userDB {
 		this.id = id;
 	}
 	public String getPw() {
-		return pw;
+		return pwd;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setPw(String pwd) {
+		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
 }

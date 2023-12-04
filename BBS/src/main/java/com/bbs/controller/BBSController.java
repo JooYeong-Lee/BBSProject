@@ -3,6 +3,9 @@ package com.bbs.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,4 +31,14 @@ public class BBSController {
     public String post() {
         return "bbs/post"; 
     }
+	
+	@PostMapping("/write_clear")
+	public String write_clear(@RequestParam String category,
+				              @RequestParam String title,
+				              @RequestParam String content,
+				              @RequestParam("SelectFile") MultipartFile file) {
+		
+		return "redirect:/main";
+	}
+	
 }

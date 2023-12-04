@@ -9,30 +9,31 @@
 </head>
 
 <body>
-	<div id="header">
-		<div class="header-title" onclick="backToMain()"><p>BBS</p></div>
-	</div>
-	<div id="write-page">
-		<select id="category-dropdown" name="category">
-                <option value="" disabled selected>카테고리 선택</option>
-                <option value="Category1">Category1</option>
-                <option value="Category2">Category2</option>
-                <option value="Category3">Category3</option>
-                <option value="Category4">Category4</option>
-        </select>
-		<div id="in-title">
-    		<textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
-    	</div>
-    	<div id="in-content">
-            <textarea name="content" id="ucontent" required></textarea>
-        </div>
-        <div class="btn">
-			<div class="file-btn"><input type="file" name="SelectFile"/></div>
-        	<div class="post-btn"><button type="submit">작성</button></div>
-		</divc>
-        	
-	</div>
-	
+	<form action="/write_clear">
+		<div id="header">
+			<div class="header-title" onclick="backToMain()"><p>BBS</p></div>
+		</div>
+		<div id="write-page">
+			<select id="category-dropdown" name="category">
+	                <option value="" disabled selected>카테고리 선택</option>
+	                <option value="Category1">Category1</option>
+	                <option value="Category2">Category2</option>
+	                <option value="Category3">Category3</option>
+	                <option value="Category4">Category4</option>
+	        </select>
+			<div id="in-title">
+	    		<textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+	    	</div>
+	    	<div id="in-content">
+	            <textarea name="content" id="ucontent" required></textarea>
+	        </div>
+	        <div class="btn">
+				<div class="file-btn"><input type="file" name="SelectFile"/></div>
+	        	<div class="post-btn"><button type="submit">작성</button></div>
+			</divc>
+	        	
+		</div>
+	</form>
 	<script src="js/write.js"></script>
 </body>
 
