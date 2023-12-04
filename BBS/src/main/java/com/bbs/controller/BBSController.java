@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bbs.DB.userDB;
 import com.bbs.Service.bbsService;
 import com.bbs.Service.commentService;
 import com.bbs.Service.userService;
@@ -67,8 +68,10 @@ public class BBSController {
 	
 	@PostMapping("/login_clear")
 	public String login_clear(@RequestParam String id,
-							  @RequestParam String pwd) {
-		
+							  @RequestParam String pwd,
+							  HttpSession session) {
+		if(userservice.logincheck(id, pwd))
+			session.setAttribute("user", id);
 		return "redirect:/main";
 	}
 	

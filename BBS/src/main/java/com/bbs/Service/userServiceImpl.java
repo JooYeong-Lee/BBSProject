@@ -1,5 +1,7 @@
 package com.bbs.Service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,15 @@ public class userServiceImpl implements userService {
 	
 	public boolean finduser(String id) {
 		return userrepository.findById(id).isEmpty();
+	}
+	
+	public boolean logincheck(String id, String pwd) {
+		//user 변수에 id를 넣어서 데이터가 존재하면 true, false 설정
+		Optional<userDB> user = userrepository.findById(id);
+		
+		//user가 true고, userDB에 설정된 pwd값과 입력된 pwd값이 같을때 true 리턴
+		//위 조건 만족 못할시 false
+		return user.isPresent() && user.get().getPwd().equals(pwd);
 	}
 	
 	public void insertuser(String id, String pwd) {
