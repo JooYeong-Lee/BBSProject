@@ -18,10 +18,10 @@ public class userDB {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
+	public String getPwd() {
 		return pwd;
 	}
-	public void setPw(String pwd) {
+	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
 }
