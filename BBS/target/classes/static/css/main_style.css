@@ -41,7 +41,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 85%; 
-    margin-top: 110%; 
+    margin-top: 95%; 
     cursor: pointer;
 }
 
@@ -51,7 +51,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-left: 5%;
-    margin-top: 110%;
+    margin-top: 90%;
 }
 
 /*bio + 수정 버튼*/

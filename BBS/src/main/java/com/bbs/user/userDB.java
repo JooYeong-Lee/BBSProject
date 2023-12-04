@@ -1,4 +1,4 @@
-package com.bbs;
+package com.bbs.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
