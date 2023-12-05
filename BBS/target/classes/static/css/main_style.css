@@ -55,6 +55,11 @@ body {
 	height: 35px;
 }
 
+.sign-up {
+	margin-top: 10px;
+	font-size: 15px;
+	color: mediumblue;
+}
 button {
 	font-family: 'LINESeedKR';
 	margin-left: auto;
