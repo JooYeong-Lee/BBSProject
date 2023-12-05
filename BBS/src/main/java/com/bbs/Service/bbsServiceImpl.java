@@ -117,6 +117,20 @@ public class bbsServiceImpl implements bbsService {
 
 	public Page<bbsDB> findByTitle(String keyword,Pageable pageable){
 		return bbsrepository.findByTitleContaining(keyword,pageable);
+	public Page<bbsDB> findfree(Pageable pageable){
+       return bbsrepository.findByCategory("free", pageable);
+   }
+
+	public Page<bbsDB> findworries(Pageable pageable) {
+		return bbsrepository.findByCategory("worries", pageable);
+	}
+
+	public Page<bbsDB> findsecret(Pageable pageable) {
+		return bbsrepository.findByCategory("secret", pageable);
+	}
+
+	public Page<bbsDB> findpromotion(Pageable pageable) {
+		return bbsrepository.findByCategory("promotion", pageable);
 	}
 	
 }

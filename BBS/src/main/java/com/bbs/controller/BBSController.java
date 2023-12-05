@@ -39,6 +39,7 @@ public class BBSController {
 	bbsService bbsservice;
 	@Autowired
 	commentService commentservice;
+	String page = "";
 	
 	@GetMapping("/main")
     public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
@@ -69,7 +70,7 @@ public class BBSController {
         return "/bbs/main";
 	}
 	
-	@GetMapping("/write")
+	@GetMapping("write")
     public String write(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		String userId;
@@ -225,6 +226,23 @@ public class BBSController {
 	            return new ResponseEntity<>("Session not found", HttpStatus.UNAUTHORIZED);
 	        }
 
+	@GetMapping("/free")
+	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.findfree(pageable);
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
+        return "/bbs/main";
 	}
 	
 	@GetMapping("/worries")

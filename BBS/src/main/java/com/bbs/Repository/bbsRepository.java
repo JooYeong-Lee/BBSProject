@@ -2,6 +2,8 @@ package com.bbs.Repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +19,5 @@ public interface bbsRepository extends JpaRepository<bbsDB, Long> {
 	        "WHERE v.title LIKE '%' || :title || '%' " +
 	        "ORDER BY v.bbs_num DESC", nativeQuery = true)
 	Page<bbsDB> findByTitleContaining(@Param("title") String keyword, Pageable pageable);
+	Page<bbsDB> findByCategory(String category, Pageable pageable);
 }

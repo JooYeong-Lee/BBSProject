@@ -60,13 +60,13 @@
                     <img src="/imgs/category.png" alt="Category" class="category-btn" onclick="toggleCategoryPopup()">
                     <div class="category-popup" id="categoryPopup">
                         <div class="category-popup-content">
-                            <a href="#">Category 1</a>
+                            <a th:href="@{/free(category='free')}">자유</a>
                             <br>
-                            <a href="#">Category 2</a>
+                            <a th:href="@{/worries(category='worries')}">고민</a>
                             <br>
-                            <a href="#">Category 3</a>
+                            <a th:href="@{/secret(category='secret')}">비밀</a>
                             <br>
-                            <a href="#">Category 4</a>
+                            <a th:href="@{/promotion(category='promotion')}">홍보</a>
                         </div>
                         <span class="close-btn" onclick="closeCategoryPopup()">×</span>
                     </div>
