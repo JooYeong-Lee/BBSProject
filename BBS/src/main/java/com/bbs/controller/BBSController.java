@@ -28,7 +28,7 @@ public class BBSController {
 	
 	@GetMapping("/main")
     public String main(Model model) {
-        return "/bbs/main"; 
+        return "bbs/main"; 
     }
 	
 	@GetMapping("/write")
@@ -41,7 +41,7 @@ public class BBSController {
 			userId = "Unknown User";
 		}
 			
-        return "/bbs/write"; 
+        return "bbs/write"; 
     }
 	
 	@GetMapping("/post")
@@ -51,7 +51,7 @@ public class BBSController {
 	
 	@GetMapping("/join")
 	public String join() {
-		return "/bbs/join";
+		return "bbs/join";
 	}
 	
 	@PostMapping("/check_id") //아이디 중복체크(ajax)
@@ -62,7 +62,7 @@ public class BBSController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return "/bbs/login";
+		return "bbs/login";
 	}
 	
 	@PostMapping("/join_clear")

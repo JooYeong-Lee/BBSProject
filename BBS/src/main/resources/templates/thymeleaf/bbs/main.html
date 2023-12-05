@@ -12,12 +12,17 @@
     <div id="content">
         <div id="left_page" th:if="${session.user == null}">
 			<!-- 로그인 안돼있을때 보여지는 div -->
+			<p>LOGIN</p>
+			<input type="text" class="id" name=""placeholder="ID">
+			<input type="text" class="pwd" name=""placeholder="Password">
+			<div><button type="submit">Login</button></div>
 		</div>
 		
         <div id="left_page" th:if="${session.user != null}">
 			<!-- 로그인 돼있을때 보여지는 div -->
 			<!--배경화면 수정 버튼-->
 			<img src="/imgs/camera.png" alt="Camera" class="camera-btn" onclick="editCamera()">
+			<img src="/imgs/logout.png" alt="Logout" class="logout-btn" onclick="logOut()">
 			<div class="line1">
 				<p class="big_title" th:text="${session.user}"></p>
 				<a href="#">수정</a>
