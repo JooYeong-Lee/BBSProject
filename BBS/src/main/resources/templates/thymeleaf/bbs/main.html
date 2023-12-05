@@ -13,10 +13,10 @@
         <div id="left_page" th:if="${session.user == null}">
 			<!-- 로그인 안돼있을때 보여지는 div -->
 			<form action="/login_clear" method="post">
-				<p>LOGIN</p>
+				<p class="login-txt">LOGIN</p>
 				<input type="text" class="id" name="id" placeholder="ID">
 				<input type="password" class="pwd" name="pwd" placeholder="Password">
-				<div><button type="submit">Login</button></div>
+				<button class="login-btn" type="submit">Login</button>
 			</form>
 		</div>
 		
