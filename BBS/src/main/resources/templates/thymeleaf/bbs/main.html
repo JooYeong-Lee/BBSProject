@@ -10,12 +10,16 @@
 
 <body>
     <div id="content">
-        <div id="left_page">
+        <div id="left_page" th:if="${session.user == null}">
+			<!-- 로그인 안돼있을때 보여지는 div -->
+		</div>
+		
+        <div id="left_page" th:if="${session.user != null}">
+			<!-- 로그인 돼있을때 보여지는 div -->
 			<!--배경화면 수정 버튼-->
 			<img src="/imgs/camera.png" alt="Camera" class="camera-btn" onclick="editCamera()">
 			<div class="line1">
-				<p th:if="${session.user == null}" class="big_title">Unknown User</p>
-				<p th:if="${session.user != null}" class="big_title" th:text="${session.user}"></p>
+				<p class="big_title" th:text="${session.user}"></p>
 				<a href="#">수정</a>
 			</div>
 			<div class="line2">
