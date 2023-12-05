@@ -26,4 +26,8 @@ public class bbsServiceImpl implements bbsService {
 	public Page<bbsDB> getAllBbs(Pageable pageable) {
         return bbsrepository.findAll(pageable);
     }
+	
+	public bbsDB getByID(Long id) {
+	    return bbsrepository.findById(id).orElseThrow();
+	}
 }

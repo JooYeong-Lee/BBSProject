@@ -10,11 +10,23 @@
 
 <body>
     <div id="content">
-        <div id="left_page">
+        <div id="left_page" th:if="${session.user == null}">
+			<!-- 로그인 안돼있을때 보여지는 div -->
+			<form action="/login_clear" method="post">
+				<p>LOGIN</p>
+				<input type="text" class="id" name="id" placeholder="ID">
+				<input type="password" class="pwd" name="pwd" placeholder="Password">
+				<div><button type="submit">Login</button></div>
+			</form>
+		</div>
+		
+        <div id="left_page" th:if="${session.user != null}">
+			<!-- 로그인 돼있을때 보여지는 div -->
 			<!--배경화면 수정 버튼-->
 			<img src="/imgs/camera.png" alt="Camera" class="camera-btn" onclick="editCamera()">
+			<img src="/imgs/logout.png" alt="Logout" class="logout-btn" onclick="logOut()">
 			<div class="line1">
-				<p class="big_title">Unknown User</p>
+				<p class="big_title" th:text="${session.user}"></p>
 				<a href="#">수정</a>
 			</div>
 			<div class="line2">
@@ -49,16 +61,16 @@
 			      </a>
 			    </div>
             </div>
-            <div id="post">
-				<div class="category-name"><p>Category1</p></div>
-				<div class="title"><p>First Post</p></div>
+            <div id="post" th:each = "bbs : ${bbsDB}">
+				<div class="category-name"><p th:text="${bbs.category}">Category1</p></div>
+				<div class="title"><p th:text="${bbs.title}">First Post</p></div>
 				<div class="user-date">
-					<p class="user">unknown user</p>
+					<p class="user" th:text="${bbs.id}">unknown user</p>
 					<p>&nbsp;|&nbsp;</p> <!-- 구분선 태그(지우지 말 것)-->
-					<p class="date">2023.12.01</p>
+					<p class="date" th:text="${bbs.date}">2023.12.01</p>
 				</div>
 				<hr>
-				<div class="in-content"><p>내용입니다</p></div>
+				<div class="in-content"><p th:text="${bbs.content}">내용입니다</p></div>
 				<hr>
 				<div class="comment-box">
 					<div class="comment-iddate">

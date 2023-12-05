@@ -67,7 +67,7 @@
             <!-- 게시글 표시 -->
 			<div id="list">
 				<tr th:each = "bbs : ${bbsDB}">
-					<div class="memo" onclick="openPost()">
+					<div class="memo" th:onclick="'openPost(' + ${bbs.bbs_num} + ')'">
 				        <p class="memo_title" th:text="${bbs.title}"></p>
 				        <p class="memo_content" th:text="${bbs.content}"></p>
 				    </div>

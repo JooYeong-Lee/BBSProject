@@ -58,15 +58,17 @@ public class BBSController {
 		String userId;
 		if(session != null) { // 로그인이 상태면
 			userId = (String)session.getAttribute("user"); 
-		} else { // 로그인 상태가 아니면
-			userId = "Unknown User";
-		}
-			
-        return "/bbs/write"; 
+	        return "/bbs/write"; 
+		} else
+			return "redirect:/main";
     }
 	
 	@GetMapping("/post")
-    public String post() {
+    public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model) {
+		bbsDB bbsdb = bbsservice.getByID(bbsnum);
+		
+		model.addAttribute("bbsDB", bbsdb);
+		
         return "/bbs/post"; 
     }
 	

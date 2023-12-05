@@ -15,9 +15,10 @@ function searchTitle() {
 	//여기에 제목 검색 후 이벤트 작성
 }
 
-function openPost() {
+function openPost(bbsNum) {
 	//여기에 게시글 클릭 후 이벤트 작성
-	window.location.href = '/post'; //쓰기 편하려고 일부러 넣어놓은 거!! 나중에 백 작업하면서 수정해도 ok
+    console.log(' bbsNum : ' + bbsNum);
+    window.location.href = '/post?bbs_num=' + bbsNum;
 }
 
 function editCamera() {

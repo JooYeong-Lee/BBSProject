@@ -1,5 +1,6 @@
 package com.bbs.DB;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,8 @@ public class bbsDB {
 	private String title;
 	private String category;
 	private String date;
+	
+	@Column(columnDefinition = "TEXT")
 	private String content;
 	
 	public Long getBbs_num() {
