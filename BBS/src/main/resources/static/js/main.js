@@ -26,6 +26,7 @@ function editCamera() {
 
 function logOut() {
 	//여기에 로그아웃 이벤트 작성
+	window.location.href = '/logout';
 }
 
 function backToMain() {

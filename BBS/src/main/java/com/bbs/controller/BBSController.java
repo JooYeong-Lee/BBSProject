@@ -51,9 +51,6 @@ public class BBSController {
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
         return "/bbs/main";
 	}
-    public String main(Model model) {
-        return "bbs/main"; 
-    }
 	
 	@GetMapping("/write")
     public String write(HttpServletRequest req) {
@@ -65,7 +62,7 @@ public class BBSController {
 			userId = "Unknown User";
 		}
 			
-        return "bbs/write"; 
+        return "/bbs/write"; 
     }
 	
 	@GetMapping("/post")
@@ -75,7 +72,18 @@ public class BBSController {
 	
 	@GetMapping("/join")
 	public String join() {
-		return "bbs/join";
+		return "/bbs/join";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			session.invalidate();
+		}
+		
+		return "redirect:/main";
 	}
 	
 	@PostMapping("/check_id") //아이디 중복체크(ajax)

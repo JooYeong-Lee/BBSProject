@@ -10,15 +10,14 @@
 
 <body>
     <div id="content">
-	        <div id="left_page" th:if="${session.user == null}">
-				<!-- 로그인 안돼있을때 보여지는 div -->
-			</div>
         <div id="left_page" th:if="${session.user == null}">
 			<!-- 로그인 안돼있을때 보여지는 div -->
-			<p>LOGIN</p>
-			<input type="text" class="id" name=""placeholder="ID">
-			<input type="text" class="pwd" name=""placeholder="Password">
-			<div><button type="submit">Login</button></div>
+			<form action="/login_clear" method="post">
+				<p>LOGIN</p>
+				<input type="text" class="id" name="id" placeholder="ID">
+				<input type="password" class="pwd" name="pwd" placeholder="Password">
+				<div><button type="submit">Login</button></div>
+			</form>
 		</div>
 		
         <div id="left_page" th:if="${session.user != null}">
@@ -58,32 +57,14 @@
 				    <p>BBS</p>
 				</div>
 				<div class="search-box">
-			      <input type="text" class="search-txt" name=""placeholder="Search by title">
+			      <input type="text" class="search-txt" name="search" placeholder="Search by title">
 			      <img src="/imgs/search.png" alt="Search Icon" class="search-btn" onclick="searchTitle()">
 			        <i class="fas fa-search"></i>
 			      </a>
 			    </div>
             </div>
-            <!--
-            <div id="list">
-			    <div class="memo" onclick="openPost()">
-			        <p class="memo_title">First Post</p>
-			        <p class="memo_content">미리보기 내용입니다.</p>
-			    </div>
-			    <div class="memo" onclick="openPost()">
-			        <p class="memo_title">Second Post</p>
-			        <p class="memo_content">미리보기 내용입니다.</p>
-			    </div>
-			    <div class="memo" onclick="openPost()">
-			        <p class="memo_title">Third Post</p>
-			        <p class="memo_content">미리보기 내용입니다.</p>
-			    </div>
-			    <div class="memo" onclick="openPost()">
-			        <p class="memo_title">Fourth Post</p>
-			        <p class="memo_content">미리보기 내용입니다.</p>
-			    </div>
-			</div>
-			-->
+            
+            <!-- 게시글 표시 -->
 			<div id="list">
 				<tr th:each = "bbs : ${bbsDB}">
 					<div class="memo" onclick="openPost()">
@@ -91,6 +72,8 @@
 				        <p class="memo_content" th:text="${bbs.content}"></p>
 				    </div>
 			</div>
+			
+			<!-- 페이징 -->
 			<div id="paging_box">
 			    <ul>
 			        <li th:if="${currentPage > 1}" class="fir_btn">
