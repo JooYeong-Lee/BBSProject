@@ -1,6 +1,12 @@
 package com.bbs.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bbs.DB.bbsDB;
 import com.bbs.DB.userDB;
 import com.bbs.Service.bbsService;
 import com.bbs.Service.commentService;
@@ -27,7 +34,21 @@ public class BBSController {
 	commentService commentservice;
 	
 	@GetMapping("/main")
-    public String main(Model model) {
+    public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.getAllBbs(pageable);
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
         return "/bbs/main"; 
     }
 	
@@ -88,14 +109,12 @@ public class BBSController {
 				              @RequestParam String content,
 				              @RequestParam("SelectFile") MultipartFile file,
 				              HttpServletRequest req) {
-		//bbsDB에 id, title, category, date, content 들어가야함
-		HttpSession session = req.getSession(false);
-		String userId;
-		if(session != null) { // 로그인이 상태면
-			userId = (String)session.getAttribute("user"); 
-		} else { // 로그인 상태가 아니면
-			userId = "Unknown User";
-		}
+		LocalDateTime time = LocalDateTime.now();
+		String timestr = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		
+		String userId = (String)req.getSession(false).getAttribute("user");
+		
+		bbsservice.insertbbs(category, content, timestr, userId, title);
 		
 		return "redirect:/main";
 	}
