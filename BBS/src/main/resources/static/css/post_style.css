@@ -274,6 +274,62 @@ hr {
 	width: 97%;
 }
 
+.comment-input {
+	font-family: 'LINESeedKR-Bd';
+	margin: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row; 
+    flex-direction: column;
+    margin-top: -20px;
+	margin-bottom: -10px;
+}
+
+.input-btn {
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+    
+}
+
+.comment {
+	width: 1300px;
+	height: 70px;
+	margin-bottom: 10px;
+}
+
+button {
+	font-family: 'LINESeedKR';
+	margin-left: auto;
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn {
+	margin-left: 20px;
+	width: 110px;
+	height: 60px;
+	background-color: #ccc;
+    border:none;
+    border-radius:30px;
+    text-align: center;
+    line-height: 50px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 0px;
+}
+
+.submit-btn:hover {
+    background-color: lightblue;
+    color: white;
+    cursor: pointer;
+}
+
 .comment-iddate {
 	font-family: 'LINESeedKR-Bd';
 	margin: 20px;
