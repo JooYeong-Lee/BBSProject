@@ -342,7 +342,7 @@ button {
 
 .in-content {
 	margin: 20px;
-	height: 500px;
+	height: 350px;
 	font-size: 20px;
 }
 
@@ -374,7 +374,7 @@ hr {
 	font-size: 20px;
 	width: 1300px;
 	height: 70px;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
 	margin-top: -10px;
 }
 
@@ -401,7 +401,7 @@ button {
     text-align: center;
     line-height: 50px;
     transition: background-color 0.3s, color 0.3s;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .submit-btn:hover {
@@ -410,14 +410,24 @@ button {
     cursor: pointer;
 }
 
+.comment-page {
+	width: 100%;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+.comment-box {
+	margin-bottom: 20px;
+}
+
 .comment-iddate {
 	font-family: 'LINESeedKR-Bd';
 	margin: 20px;
     font-size: 20px;
     display: flex;
     align-items: center; 
-    margin-top: -20px;
 	margin-bottom: -10px;
+	margin-top: -20px;
 }
 
 .comment-post {
