@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bbs.DB.bbsDB;
 import com.bbs.DB.commentDB;
 import com.bbs.DB.userDB;
+import com.bbs.Repository.bbsRepository;
 import com.bbs.Service.bbsService;
 import com.bbs.Service.commentService;
 import com.bbs.Service.userService;
@@ -39,6 +41,8 @@ public class BBSController {
 	bbsService bbsservice;
 	@Autowired
 	commentService commentservice;
+	
+	bbsRepository bbsrepository;
 	String page = "";
 	
 	@GetMapping("/main")

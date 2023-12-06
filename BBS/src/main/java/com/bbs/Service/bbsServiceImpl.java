@@ -132,5 +132,4 @@ public class bbsServiceImpl implements bbsService {
 	public Page<bbsDB> findpromotion(Pageable pageable) {
 		return bbsrepository.findByCategory("promotion", pageable);
 	}
-	
 }
