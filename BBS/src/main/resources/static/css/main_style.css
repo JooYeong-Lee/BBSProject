@@ -364,3 +364,23 @@ button {
 	bottom: 0;
 	z-index: 1;
 }
+
+.id_change {
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: 90%;
+	display: none;
+}
+
+.change_submit_btn {
+	
+}
+
+.intro_change{
+	justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: 90%;
+	display: none;
+}

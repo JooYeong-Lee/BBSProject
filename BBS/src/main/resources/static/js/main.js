@@ -39,3 +39,25 @@ function writePost() {
 	//여기에 게시글 작성 이벤트 작성
 	window.location.href = '/write'; //쓰기 편하려고 일부러 넣어놓은 거!! 나중에 백 작업하면서 수정해도 ok
 }
+
+function idChange() {
+	var div_ID = document.querySelector(".line1");
+	var div_Intro = document.querySelector(".line2");
+	var div_Change = document.querySelector(".id_change");
+	var submit_btn = document.querySelector(".change_submit_btn")
+	
+	div_ID.style.display="none";
+	div_Intro.style.display="none";
+	div_Change.style.display="block";
+	submit_btn.disabled=true;
+}
+
+function introUpdate(){
+	var div_ID = document.querySelector(".line1");
+	var div_Intro = document.querySelector(".line2");
+	var div_Change = document.querySelector(".intro_change");
+	
+	div_ID.style.display="none";
+	div_Intro.style.display="none";
+	div_Change.style.display="block";
+}
