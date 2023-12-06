@@ -13,6 +13,7 @@ body {
 
 /*프로필 + 카테고리*/
 #left_page { 
+    position: relative; /* Add position relative */
     width: 20%;
     height: 100%;
     float: left;
@@ -21,17 +22,92 @@ body {
     background-color: rgb(224, 250, 248);
     border-right: 2px solid black;
     align-items: center;
+    
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100%; 
+}
+
+.login-txt,
+.id,
+.pwd,
+.login-btn {
+    margin: 5px 0; 
+}
+
+.login-txt {
+	font-family:'DNFBitBitv2';
+	font-size: 50px;
+	color: #fff;
+	text-shadow: -1px -1px 0 black,  
+                  1px -1px 0 black,
+                 -1px 1px 0 black,
+                  1px 1px 0 black;
+}
+
+.id,
+.pwd {
+	width: 300px;
+	height: 35px;
+}
+
+.sign-up {
+	margin-top: 10px;
+	font-size: 15px;
+	color: mediumblue;
+}
+button {
+	font-family: 'LINESeedKR';
+	margin-left: auto;
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btn {
+	width: 200px;
+	height: 40px;
+	background-color: #51e3d4;
+    border:none;
+    border-radius:30px;
+    text-align: center;
+    line-height: 50px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 15px;
+}
+
+.login-btn:hover {
+    background-color: black;
+    color: white;
 }
 
 .camera-btn {
-	width: 35px;
-  	height: 35px;
+    width: 35px;
+    height: 35px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 85%;
-    margin-top: 3%;
     cursor: pointer;
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+}
+
+.logout-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    cursor: pointer;
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
 }
 
 .write-btn {
@@ -41,7 +117,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 85%; 
-    margin-top: 110%; 
+    margin-top: 95%; 
     cursor: pointer;
 }
 
@@ -51,7 +127,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-left: 5%;
-    margin-top: 110%;
+    margin-top: 90%;
 }
 
 /*bio + 수정 버튼*/
@@ -62,6 +138,7 @@ body {
     margin-left: 5%;
     margin-top: -10%;
 }
+
 /*수정 버튼*/
 .line1 a, .line2 a {
 	font-family: 'LINESeedKR';
