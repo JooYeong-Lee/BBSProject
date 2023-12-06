@@ -32,14 +32,18 @@ function logOut() {
 }
 function click_comment_btn(button) {
     var comment = document.querySelector('.comment').value;
+    var userid = button.getAttribute('data-id');
+    var bbsnum = button.getAttribute('data-bbs-num');
+    
+    if(userid == null){
+		alert("로그인하셔야 댓글 등록이 가능합니다.");
+		return false;
+	}
+    
     if(comment.trim() === ""){
 		alert("댓글 내용을 입력해주세요");
 		return false;
 	}
-    
-    var userid = button.getAttribute('data-id');
-    var bbsnum = button.getAttribute('data-bbs-num');
-	console.log(userid, bbsnum, comment);
 	
 	fetch('/comment_clear', {
 	    method: 'POST',

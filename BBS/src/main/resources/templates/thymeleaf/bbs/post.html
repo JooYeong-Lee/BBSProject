@@ -76,10 +76,10 @@
 				<div class="in-content"><p th:text="${bbs.content}">내용입니다</p></div>
 				<hr>
 				<div class="comment-input">
-					<p class="comment-id" th:text="${bbs.id}">unknown user</p> <!--여기 아이디 넣기-->
+					<p class="comment-id" th:text="${session.user}">unknown user</p> <!--여기 아이디 넣기-->
 					<div class="input-btn">
 						<textarea type="text" name="comment" class="comment" placeholder="댓글을 입력하세요"> </textarea>
-						<button type="button" class="submit-btn" th:data-id="${bbs.id}" 
+						<button type="button" class="submit-btn" th:data-id="${session.user}" 
 								th:data-bbs-num="${bbs.bbs_num}" onclick="click_comment_btn(this)">등록</button>
 					</div>
 				</div>
