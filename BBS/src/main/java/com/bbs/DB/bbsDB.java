@@ -18,7 +18,6 @@ public class bbsDB {
 	private String title;
 	private String category;
 	private String date;
-	
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
