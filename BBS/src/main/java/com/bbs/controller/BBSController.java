@@ -79,11 +79,6 @@ public class BBSController {
         return "bbs/post"; 
     }
 	
-	@GetMapping("/join")
-	public String join() {
-		return "bbs/join";
-	}
-	
 	@GetMapping("/signup")
 	public String signup() {
 		return "/bbs/signup";

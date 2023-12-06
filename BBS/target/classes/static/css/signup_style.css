@@ -83,7 +83,7 @@ input {
 }
 
 .user-id {
-	width: 350px;
+	width: 330px;
     height: 30px;
     display: inline-block;
 }
@@ -133,16 +133,16 @@ label {
 	color: gray;
 }
 
-.same-id {
+.dupl_msg {
 	font-size: 15px;
 	font-family: 'LINESeedKR';
 	color: green;
 }
 
-.diffrent-id {
+.pwd_msg {
 	font-size: 15px;
 	font-family: 'LINESeedKR';
-	color: red;
+	color: green;
 }
 
 .check-id {

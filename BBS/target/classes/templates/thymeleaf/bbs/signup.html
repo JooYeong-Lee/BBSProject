@@ -12,24 +12,26 @@
         <div class="header-title"><p>BBS</p></div>
     </div>
     <hr>
-    <div class="join-box">
-		<div class="title-join"><h2>회원가입을 위해<br>정보를 입력해주세요.</h2></div>
-		<div class="input-info">
-			<label for="user-id">* 아이디<br>
-			
-                <input type="text" class="user-id">
-                <button class="check-id">중복확인</button>
-            </label>
-            <!--<p class="same-id">아이디가 일치합니다.</p>-->
-            <p class="diffrent-id">아이디가 일치하지 않습니다.</p>
-            <label for="user-pw">* 비밀번호<br>
-                <input class="user-pw" type="password"><br><br>
-            </label>
-            <label for="check-pw">* 비밀번호 확인<br>
-                <input class="check-pw" type="password"><br><br> 
-            </label>
+    <form action="/join_clear" method="post">
+	    <div class="join-box">
+			<div class="title-join"><h2>회원가입을 위해<br>정보를 입력해주세요.</h2></div>
+			<div class="input-info">
+				<label for="user-id">* 아이디<br>
+	                <input type="text" class="user-id" name="id">
+	                <button type="button" class="check-id" onclick="checkDuplicate()">중복확인</button>
+	            	<div class="dupl_msg"></div>
+	            </label>
+	            <label for="user-pw">* 비밀번호<br>
+	                <input class="user-pw" type="password" name="pwd"><br><br>
+	            </label>
+	            <label for="check-pw">* 비밀번호 확인<br>
+	                <input class="check-pw" type="password"><br><br>
+	                <div class="pwd_msg"></div>
+	            </label>
+			</div>
+	        <button type="submit" class="join-btn" disabled>JOIN</button>
 		</div>
-        <button class="join-btn">JOIN</button>
-	</div>
+    </form>
+	<script src="js/signup.js"></script>
 </body>
 </html>
