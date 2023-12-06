@@ -61,3 +61,39 @@ function introUpdate(){
 	div_Intro.style.display="none";
 	div_Change.style.display="block";
 }
+
+function idChange_submit(){
+	
+}
+
+function introUpdate_submit(button){
+	var intro = document.querySelector(".intro_change_box");
+	var userid = button.getAttribute('data-id');
+	
+    if(intro.value.trim() === ""){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	
+	fetch('/introInsert', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	    },
+	    body: 'userid=' + encodeURIComponent(userid) + '&intro=' + encodeURIComponent(intro.value),
+	})
+	.then(response => {
+	    if (!response.ok) {
+	        throw new Error('한줄 소개 등록중 오류 발생');
+	    }
+	    return response.text();
+	})
+	.then(data => {
+	    console.log('한줄 소개 등록 완료');
+	})
+	.catch(error => {
+	    console.error('한줄 소개 등록중 오류 발생');
+	});
+	
+	location.reload();
+}

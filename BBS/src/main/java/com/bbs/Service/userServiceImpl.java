@@ -13,6 +13,12 @@ public class userServiceImpl implements userService {
 	@Autowired
 	private userRepository userrepository;
 	
+	public userDB finduserById(String id) {
+		Optional<userDB> userOptional = userrepository.findById(id);
+		
+		return userOptional.get();
+	}
+	
 	public boolean finduser(String id) {
 		return userrepository.findById(id).isEmpty();
 	}
@@ -30,6 +36,18 @@ public class userServiceImpl implements userService {
 		userDB userDB = new userDB();
 		userDB.setId(id);
 		userDB.setPwd(pwd);
+		userDB.setIntroduce("한줄 소개를 등록해보세요!");
 		userrepository.save(userDB);
+	}
+	
+	public void updateIntro(String id, String intro) {
+		Optional<userDB> userOptional = userrepository.findById(id);
+		
+		if (userOptional.isPresent()) {
+		userDB userDB = userOptional.get();
+		userDB.setIntroduce(intro);
+		
+		userrepository.save(userDB);
+		}
 	}
 }

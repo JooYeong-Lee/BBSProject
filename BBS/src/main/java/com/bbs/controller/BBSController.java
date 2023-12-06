@@ -39,7 +39,15 @@ public class BBSController {
 	commentService commentservice;
 	
 	@GetMapping("/main")
-    public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			userDB userdb = userservice.finduserById(userId);
+			model.addAttribute("userDB", userdb);
+		}
+			
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "bbsnum"));	
         Page<bbsDB> bbsPage = bbsservice.getAllBbs(pageable);
@@ -61,7 +69,7 @@ public class BBSController {
     public String write(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		String userId;
-		if(session != null) { // 로그인이 상태면
+		if(session != null) { // 로그인 상태면
 			userId = (String)session.getAttribute("user"); 
 	        return "/bbs/write"; 
 		} else
@@ -147,6 +155,14 @@ public class BBSController {
 		commentservice.insertcomment(bbsnum, comment, timestr, id);
 
         return new ResponseEntity<>("댓글 등록 완료", HttpStatus.OK);
+    }
+	
+	@PostMapping("/introInsert")
+    public ResponseEntity<String> introInsert(@RequestParam String userid, @RequestParam String intro) {
+		System.out.println("#######" + userid);
+		System.out.println("#######" + intro);
+        userservice.updateIntro(userid, intro);
+        return new ResponseEntity<>("한줄 소개 등록 완료", HttpStatus.OK);
     }
 	
 }

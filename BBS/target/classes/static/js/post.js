@@ -56,10 +56,10 @@ function click_comment_btn(button) {
 	    if (!response.ok) {
 	        throw new Error('댓글 등록중 오류 발생');
 	    }
-	    return response.text(); // 또는 response.json() 등, 필요에 따라 응답을 파싱
+	    return response.text();
 	})
 	.then(data => {
-	    console.log('댓글 등록 완료'); // 서버로부터의 응답을 처리하는 코드
+	    console.log('댓글 등록 완료');
 	    location.reload();
 	})
 	.catch(error => {

@@ -1,3 +1,7 @@
+function backToMain() {
+	window.location.href = '/main';
+}
+
 var idcheck = false;
 var pwdcheck = false;
 var pwd = document.querySelector('.user-pw');
@@ -15,7 +19,7 @@ function enableSubmitButton() {
 function checkPassword() {
 	var pwd_msg = document.querySelector('.pwd_msg');
 	
-    if (pwd.value.trim() === repwd.value.trim()) {
+    if (pwd.value.trim() !== "" && pwd.value.trim() === repwd.value.trim()) {
         pwdcheck = true;
         pwd_msg.innerText = "비밀번호가 일치합니다."
         pwd_msg.style.color = "green";

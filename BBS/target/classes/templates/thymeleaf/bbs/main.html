@@ -33,7 +33,7 @@
 				<a href="#" onclick="idChange()">수정</a> <!-- 아이디 수정하면 컨트롤러에서 테이블별로 id 다 찾아서 수정해줘야함 -->
 			</div>
 			<div class="line2">
-				<p class="bio">한줄 소개 입니다.</p>
+				<p class="bio" th:text="${userDB.introduce}">한줄 소개 입니다.</p>
 				<a href="#" onclick="introUpdate()">수정</a>
 			</div>
 			
@@ -42,13 +42,13 @@
 				<input type="text" class="id_change_box" placeholder="ID">
 				<button class="change_check_btn">중복 확인</button>
 				<p class="change_txt"></p>
-				<button class="change_submit_btn">아이디 변경</button>
+				<button class="change_submit_btn" onclick="idChange_submit()" disabled>아이디 변경</button>
 			</div>
 			
 			<!-- 한줄소개 수정 버튼 눌렀을때 나오는 div -->
 			<div class="intro_change">
 				<input type="text" class="intro_change_box" placeholder="한줄 소개 입력">
-				<button class="intro_submit_btn">변경</button>
+				<button class="intro_submit_btn" th:data-id="${userId}" th:onclick="introUpdate_submit(this)">변경</button>
 			</div>
 			<img src="/imgs/write.png" alt="Write" class="write-btn" onclick="writePost()">
         </div>

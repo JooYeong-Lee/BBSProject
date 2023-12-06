@@ -369,18 +369,100 @@ button {
     justify-content: space-between;
     align-items: center;
     margin-left: 5%;
-    margin-top: 90%;
+    margin-top: 105%;
 	display: none;
 }
 
-.change_submit_btn {
+.id_change_box {
+	width: 240px;
+    height: 30px;
+    display: inline-block;
+}
+
+.change_check_btn {
+	font-family: 'LINESeedKR';
+	display: inline-block;
 	
+	width: 90px;
+	height: 30px;
+	margin-left: 11px;
+	font-size: 15px;
+	line-height: 30px;
+    
+	color: #fff;
+	background-color: #51e3d4;
+	border:none;
+	border-radius:15px;
+	cursor: pointer;
+}
+
+.change_submit_btn {
+	font-family: 'LINESeedKR';
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+	
+	width: 300px;
+	height: 50px;
+	font-size: 20px;
+	border:none;
+	border-radius:30px;
+	line-height: 50px;
+	
+	color: #fff;
+	background-color: #51e3d4;
+    transition: background-color 0.3s, color 0.3s;
+    
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.change_submit_btn:hover {
+	background-color: black;
+    color: white;
 }
 
 .intro_change{
 	justify-content: space-between;
     align-items: center;
     margin-left: 5%;
-    margin-top: 90%;
+    margin-top: 105%;
 	display: none;
+}
+
+.intro_change_box {
+	width: 300px;
+    height: 30px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.intro_submit_btn {
+	font-family: 'LINESeedKR';
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+	
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+	border:none;
+	border-radius:30px;
+	line-height: 50px;
+	
+	color: #fff;
+	background-color: #51e3d4;
+    transition: background-color 0.3s, color 0.3s;
+    
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.intro_submit_btn:hover {
+	background-color: black;
+    color: white;
 }
