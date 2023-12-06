@@ -114,4 +114,9 @@ public class bbsServiceImpl implements bbsService {
         }
         return "";  // 확장자가 없는 경우 빈 문자열을 반환합니다.
     }
+
+	public Page<bbsDB> findByTitle(String keyword,Pageable pageable){
+		return bbsrepository.findByTitleContaining(keyword,pageable);
+	}
+	
 }

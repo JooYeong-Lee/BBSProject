@@ -3,9 +3,18 @@ package com.bbs.Repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.bbs.DB.bbsDB;
 
 public interface bbsRepository extends JpaRepository<bbsDB, Long> {
 	public List<bbsDB> findById(String id);
+	Page<bbsDB> findByCategory(String category, Pageable pageable);
+	
+	@Query(value = "SELECT v.bbs_num, v.id, v.title, v.category, v.date, v.content " +
+	        "FROM bbs_list AS v " +
+	        "WHERE v.title LIKE '%' || :title || '%' " +
+	        "ORDER BY v.bbs_num DESC", nativeQuery = true)
+	Page<bbsDB> findByTitleContaining(@Param("title") String keyword, Pageable pageable);
 }

@@ -12,7 +12,38 @@ function closeCategoryPopup() {
     }, 100); 
 }
 function searchTitle() {
-	//여기에 제목 검색 후 이벤트 작성
+	const loadData = (word) => {
+		let url = `/bbs/search/${word}`;
+		
+		// 검색어를 입력하면 url 값이 변경된다
+		if (cache !== url) {
+			cache = url;
+			let data = {};
+			
+			data.word = word;
+			//console.log(data); // {world = "축구"}
+			
+			fetch(cache,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json;",
+				},
+				body: JSON.stringify(data),
+			}
+			)
+			//response 객체를 json 변환
+			.then((res) => res.json())
+			.then((data) => {
+				//console.log(data);
+				fillSearch(data); // data로 list 만드는 함수 실행
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		}
+	} // loadData
+	
 }
 
 function openPost(bbsNum) {

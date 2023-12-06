@@ -74,22 +74,78 @@
 				<div class="header-title" onclick="backToMain()">
 				    <p>BBS</p>
 				</div>
-				<div class="search-box">
-			      <input type="text" class="search-txt" name="search" placeholder="Search by title">
-			      <img src="/imgs/search.png" alt="Search Icon" class="search-btn" onclick="searchTitle()">
-			        <i class="fas fa-search"></i>
-			      </a>
-			    </div>
+				<!-- 검색창 -->
+				<form id="searchForm" action = "/search" method="get">
+					<div class="search-box">
+				      <input type="text" class="search-txt" id = "search" name="search" placeholder="Search by title">
+				      <!--<img src="/imgs/search.png" alt="Search Icon" class="search-btn" onclick="searchTitle">-->
+				      <button type = "submit" class="search-btn">
+						  <img src="/imgs/search.png" alt="Search Icon" class="search-btn">
+					  </button>
+			    	</div>
+				</form>
+
             </div>
             
-            <!-- 게시글 표시 -->
-			<div id="list">
-				<tr th:each = "bbs : ${bbsDB}">
-					<div class="memo" th:onclick="'openPost(' + ${bbs.bbsnum} + ')'">
+            <div th:if = "${searchDB == null}">
+	            <!-- 게시글 표시 -->
+				<div id="list">
+					<tr th:each = "bbs : ${bbsDB}">
+						<div class="memo" onclick="openPost()">
+					        <p class="memo_title" th:text="${bbs.title}"></p>
+					        <p class="memo_content" th:text="${bbs.content}"></p>
+					    </div>
+				</div>
+				
+				<!-- 페이징 -->
+				<div id="paging_box" >
+				    <ul>
+				        <li th:if="${currentPage > 1}" class="fir_btn">
+				            <a th:href="@{/main(page=1)}">
+				                <<
+				            </a>
+				        </li>
+				        
+				        <li th:if="${startPage >= 10}" class="pv_btn">
+				            <a th:href="@{/main(page=${startPage - 1})}"
+				            th:classappend="${startPage > 1} ? '' : 'disabled'">
+				                이전
+				            </a>
+				        </li>
+				        
+				        <li th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" class="page_btn">
+				            <a th:href="@{/main(page=${pageNum})}"
+				               th:classappend="${pageNum == currentPage} ? 'current' : ''"
+				               th:text="${pageNum}">
+				            </a>
+				        </li>
+				        
+				        <li th:if="${endPage < totalPage}" class="next_btn">
+				            <a th:href="@{/main(page=${startPage + 1})}"
+				               th:classappend="${endPage < totalPage} ? '' : 'disabled'">
+				                다음
+				            </a>
+				        </li>
+				        
+				        <li th:if="${currentPage < totalPage}" class="last_btn">
+				            <a th:href="@{/main(page=${totalPage})}">
+				                >>
+				            </a>
+				        </li>
+				        
+				    </ul>
+				</div>
+			</div>
+
+            <div th:if = "${searchDB != null}">
+				<!-- 패아장 게시글 표시 -->
+				<div id="list">
+				<tr th:each = "bbs : ${searchDB}">
+					<div class="memo" onclick="openPost()">
 				        <p class="memo_title" th:text="${bbs.title}"></p>
 				        <p class="memo_content" th:text="${bbs.content}"></p>
-				    </div>
-			</div>
+			    	</div>
+				</div>
 			
 			<!-- 페이징 -->
 			<div id="paging_box">
@@ -133,6 +189,7 @@
     </div>
     
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
 
 </html>

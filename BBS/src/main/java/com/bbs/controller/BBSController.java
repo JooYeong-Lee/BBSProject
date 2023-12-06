@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -225,4 +226,87 @@ public class BBSController {
 	        }
 
 	}
+	
+	@GetMapping("/worries")
+	public String worries(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.findworries(pageable);
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
+        return "/bbs/main";
+	}
+	
+	@GetMapping("/secret")
+	public String secret(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.findsecret(pageable);
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
+        return "/bbs/main";
+	}
+	
+	@GetMapping("/promotion")
+	public String promotion(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.findpromotion(pageable);
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
+        return "/bbs/main";
+	}
+	
+	@GetMapping("/search")
+	public String search(Model model,
+	                     @RequestParam("search") String searchKeyword,
+	                     @RequestParam(value = "page", defaultValue = "1") int page) {
+
+	    page -= 1;
+	    //String searchRegex = ".*" + searchKeyword + ".*";
+	    Pageable pageable = PageRequest.of(page, 4);
+	    Page<bbsDB> bbsPage = bbsservice.findByTitle(searchKeyword, pageable);
+
+	    int currentPage = page + 1;
+	    int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+	    int startPage = calcEnd - 9;
+	    int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+	    model.addAttribute("searchDB", bbsPage);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    model.addAttribute("currentPage", currentPage);
+	    model.addAttribute("totalPage", bbsPage.getTotalPages());
+	    model.addAttribute("searchKeyword", searchKeyword);
+
+	    return "/bbs/main";
+	}
+	
 }
