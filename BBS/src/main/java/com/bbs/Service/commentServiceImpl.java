@@ -17,7 +17,7 @@ public class commentServiceImpl implements commentService {
 	public void insertcomment(Long bbsnum, String content, String date, String id) {
 		commentDB commentdb = new commentDB();
 		
-		commentdb.setBbs_num(bbsnum);
+		commentdb.setBbsnum(bbsnum);
 		commentdb.setComment(content);
 		commentdb.setDate(date);
 		commentdb.setId(id);

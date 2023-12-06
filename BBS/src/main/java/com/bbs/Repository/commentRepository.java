@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import com.bbs.DB.commentDB;
 
 public interface commentRepository extends JpaRepository<commentDB, Long> {
-	@Query("SELECT c FROM commentDB c WHERE c.bbs_num = :bbsnum")
+	//@Query("SELECT c FROM commentDB c WHERE c.bbs_num = :bbsnum")
     public List<commentDB> findByBbsnum(@Param("bbsnum") Long bbsnum);
 }

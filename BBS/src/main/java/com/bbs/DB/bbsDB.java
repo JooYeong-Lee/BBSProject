@@ -13,7 +13,7 @@ public class bbsDB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bbs_num;
+	private Long bbsnum;
 	private String id;
 	private String title;
 	private String category;
@@ -21,11 +21,11 @@ public class bbsDB {
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
-	public Long getBbs_num() {
-		return bbs_num;
+	public Long getBbsnum() {
+		return bbsnum;
 	}
-	public void setBbs_num(Long bbs_num) {
-		this.bbs_num = bbs_num;
+	public void setBbsnum(Long bbsnum) {
+		this.bbsnum = bbsnum;
 	}
 	public String getId() {
 		return id;

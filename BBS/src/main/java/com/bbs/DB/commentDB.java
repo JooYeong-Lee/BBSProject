@@ -11,26 +11,26 @@ import jakarta.persistence.Table;
 @Table(name = "comment_list")
 public class commentDB {
 
-	private Long bbs_num;
+	private Long bbsnum;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long comment_num;
+	private Long commentnum;
 	private String id;
 	@Column(columnDefinition = "TEXT")
 	private String comment;
 	private String date;
 	
-	public Long getBbs_num() {
-		return bbs_num;
+	public Long getBbsnum() {
+		return bbsnum;
 	}
-	public void setBbs_num(Long bbs_num) {
-		this.bbs_num = bbs_num;
+	public void setBbsnum(Long bbsnum) {
+		this.bbsnum = bbsnum;
 	}
-	public Long getComment_num() {
-		return comment_num;
+	public Long getCommentnum() {
+		return commentnum;
 	}
-	public void setComment_num(Long comment_num) {
-		this.comment_num = comment_num;
+	public void setCommentnum(Long commentnum) {
+		this.commentnum = commentnum;
 	}
 	public String getId() {
 		return id;

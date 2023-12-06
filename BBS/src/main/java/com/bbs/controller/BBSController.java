@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class BBSController {
 	@GetMapping("/main")
     public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		page -= 1;
-		Pageable pageable = PageRequest.of(page, 4);	
+		Pageable pageable = PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "bbsnum"));	
         Page<bbsDB> bbsPage = bbsservice.getAllBbs(pageable);
         
         int currentPage = page + 1;
@@ -71,7 +72,7 @@ public class BBSController {
     public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model) {
 		bbsDB bbsdb = bbsservice.getByID(bbsnum);
 		List<commentDB> commentdb = commentservice.getByBbsnum(bbsnum);
-		System.out.println("######" + commentdb);
+		
 		model.addAttribute("bbsDB", bbsdb);
 		model.addAttribute("commentDB", commentdb);
 		
