@@ -84,6 +84,11 @@ public class BBSController {
 		return "bbs/join";
 	}
 	
+	@GetMapping("/signup")
+	public String signup() {
+		return "/bbs/signup";
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
