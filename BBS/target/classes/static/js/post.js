@@ -32,6 +32,11 @@ function logOut() {
 }
 function click_comment_btn(button) {
     var comment = document.querySelector('.comment').value;
+    if(comment.trim() === ""){
+		alert("댓글 내용을 입력해주세요");
+		return false;
+	}
+    
     var userid = button.getAttribute('data-id');
     var bbsnum = button.getAttribute('data-bbs-num');
 	console.log(userid, bbsnum, comment);

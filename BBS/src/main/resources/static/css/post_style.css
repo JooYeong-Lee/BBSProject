@@ -372,7 +372,7 @@ hr {
 .comment {
 	font-family: 'LINESeedKR-Bd';
 	font-size: 20px;
-	width: 1300px;
+	width: 1500px;
 	height: 70px;
 	margin-bottom: 30px;
 	margin-top: -10px;
@@ -413,7 +413,7 @@ button {
 .comment-page {
 	width: 100%;
     overflow-y: auto;
-    max-height: 150px;
+    max-height: 240px;
 }
 
 .comment-box {
