@@ -94,6 +94,7 @@ function introUpdate_submit(button){
 	.catch(error => {
 	    console.error('한줄 소개 등록중 오류 발생');
 	});
-	
-	location.reload();
+	setTimeout(function () {
+      location.reload();
+    }, 100);
 }
