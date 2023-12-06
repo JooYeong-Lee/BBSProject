@@ -2,11 +2,14 @@ package com.bbs.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bbs.DB.bbsDB;
+import com.bbs.DB.commentDB;
 import com.bbs.DB.userDB;
 import com.bbs.Service.bbsService;
 import com.bbs.Service.commentService;
@@ -49,7 +53,7 @@ public class BBSController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "/bbs/main";
+        return "bbs/main";
 	}
 	
 	@GetMapping("/write")
@@ -66,15 +70,17 @@ public class BBSController {
 	@GetMapping("/post")
     public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model) {
 		bbsDB bbsdb = bbsservice.getByID(bbsnum);
-		
+		List<commentDB> commentdb = commentservice.getByBbsnum(bbsnum);
+		System.out.println("######" + commentdb);
 		model.addAttribute("bbsDB", bbsdb);
+		model.addAttribute("commentDB", commentdb);
 		
-        return "/bbs/post"; 
+        return "bbs/post"; 
     }
 	
 	@GetMapping("/join")
 	public String join() {
-		return "/bbs/join";
+		return "bbs/join";
 	}
 	
 	@GetMapping("/logout")
@@ -131,5 +137,15 @@ public class BBSController {
 		
 		return "redirect:/main";
 	}
+	
+	@PostMapping("/comment_clear")
+    public ResponseEntity<String> comment_clear(@RequestParam Long bbsnum, @RequestParam String comment, @RequestParam String id) {
+		LocalDateTime time = LocalDateTime.now();
+		String timestr = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+		commentservice.insertcomment(bbsnum, comment, timestr, id);
+
+        return new ResponseEntity<>("댓글 등록 완료", HttpStatus.OK);
+    }
 	
 }

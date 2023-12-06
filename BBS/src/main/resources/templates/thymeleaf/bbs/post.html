@@ -64,7 +64,7 @@
 			      </a>
 			    </div>
             </div>
-            <div id="post" th:each = "bbs : ${bbsDB}">
+            <div id="post" th:each="bbs : ${bbsDB}">
 				<div class="category-name"><p th:text="${bbs.category}">Category1</p></div>
 				<div class="title"><p th:text="${bbs.title}">First Post</p></div>
 				<div class="user-date">
@@ -76,19 +76,20 @@
 				<div class="in-content"><p th:text="${bbs.content}">내용입니다</p></div>
 				<hr>
 				<div class="comment-input">
-					<p class="comment-id">unknown user</p> <!--여기 아이디 넣기-->
+					<p class="comment-id" th:text="${bbs.id}">unknown user</p> <!--여기 아이디 넣기-->
 					<div class="input-btn">
-						<textarea type="text" class="comment" placeholder="댓글을 입력하세요"> </textarea>
-						<button class="submit-btn">등록</button>
+						<textarea type="text" name="comment" class="comment" placeholder="댓글을 입력하세요"> </textarea>
+						<button type="button" class="comment_btn" th:data-id="${bbs.id}" 
+								th:data-bbs-num="${bbs.bbs_num}" onclick="click_comment_btn(this)">등록</button>
 					</div>
 				</div>
-				<div class="comment-box">
+				<div class="comment-box" th:each="comment : ${commentDB}">
 					<div class="comment-iddate">
-						<p class="comment-id">unknown user</p>
+						<p class="comment-id" th:text="${comment.id}">unknown user</p>
 						<p>&nbsp;|&nbsp;</p> <!-- 구분선 태그(지우지 말 것)-->
-						<p class="comment-date">2023.12.01</p>
+						<p class="comment-date" th:text="${comment.date}">2023.12.01</p>
 					</div>
-					<p class="comment-post">댓글 예시입니다.</p>
+					<p class="comment-post" th:text="${comment.comment}">댓글 예시입니다.</p>
 					<hr>
 				</div>
 			</div>

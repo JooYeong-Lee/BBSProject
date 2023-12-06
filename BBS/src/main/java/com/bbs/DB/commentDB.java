@@ -18,6 +18,7 @@ public class commentDB {
 	private String id;
 	@Column(columnDefinition = "TEXT")
 	private String comment;
+	private String date;
 	
 	public Long getBbs_num() {
 		return bbs_num;
@@ -42,5 +43,11 @@ public class commentDB {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 }
