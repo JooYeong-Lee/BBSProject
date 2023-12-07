@@ -15,13 +15,14 @@ public class bbsServiceImpl implements bbsService {
 	@Autowired
 	private bbsRepository bbsrepository;
 	
-	public void insertbbs(String category, String content, String date, String id, String title) {
+	public void insertbbs(String category, String content, String date, String id, String title, String fontsize) {
 		bbsDB bbsdb = new bbsDB();
 		bbsdb.setCategory(category);
 		bbsdb.setContent(content);
 		bbsdb.setDate(date);
 		bbsdb.setId(id);
 		bbsdb.setTitle(title);
+		bbsdb.setFontsize(fontsize);
 		bbsrepository.save(bbsdb);
 	}
 	

@@ -142,6 +142,7 @@ public class BBSController {
 	public String write_clear(@RequestParam String category,
 				              @RequestParam String title,
 				              @RequestParam String content,
+				              @RequestParam String fontsize,
 				              @RequestParam("SelectFile") MultipartFile file,
 				              HttpServletRequest req) {
 		LocalDateTime time = LocalDateTime.now();
@@ -149,7 +150,7 @@ public class BBSController {
 		
 		String userId = (String)req.getSession(false).getAttribute("user");
 		
-		bbsservice.insertbbs(category, content, timestr, userId, title);
+		bbsservice.insertbbs(category, content, timestr, userId, title, fontsize);
 		
 		return "redirect:/main";
 	}

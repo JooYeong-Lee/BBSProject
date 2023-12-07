@@ -87,7 +87,7 @@
 					<p class="date" th:text="${bbs.date}">2023.12.01</p>
 				</div>
 				<hr>
-				<div class="in-content"><p th:text="${bbs.content}">내용입니다</p></div>
+				<div class="in-content"><p th:style="'font-size:' + ${bbs.fontsize}" th:text="${bbs.content}">내용입니다</p></div>
 				<hr>
 				<div class="comment-input">
 					<p class="comment-id" th:text="${session.user}">unknown user</p> <!--여기 아이디 넣기-->

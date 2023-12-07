@@ -14,3 +14,12 @@ function validateForm() {
     }
     return true;
 }
+
+document.getElementById("font-size-dropdown").addEventListener("change", function () {
+    updateFontSize();
+});
+
+function updateFontSize() {
+    var selectedFontSize = document.getElementById("font-size-dropdown").value;
+    document.getElementById("ucontent").style.fontSize = selectedFontSize;
+}

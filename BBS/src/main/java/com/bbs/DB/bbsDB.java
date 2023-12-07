@@ -20,6 +20,7 @@ public class bbsDB {
 	private String date;
 	@Column(columnDefinition = "TEXT")
 	private String content;
+	private String fontsize;
 	
 	public Long getBbsnum() {
 		return bbsnum;
@@ -57,4 +58,11 @@ public class bbsDB {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getFontsize() {
+		return fontsize;
+	}
+	public void setFontsize(String fontsize) {
+		this.fontsize = fontsize;
+	}
+
 }

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.bbs.DB.bbsDB;
 
 public interface bbsService {
-	public void insertbbs(String category, String content, String date, String id, String title);
+	public void insertbbs(String category, String content, String date, String id, String title, String fontsize);
 	public Page<bbsDB> getAllBbs(Pageable pageable);
 	public bbsDB getByID(Long id);
 	public void ChangeUserId(String beforeid, String afterid);
