@@ -44,8 +44,10 @@ public class BBSController {
 		if(session != null) { // 로그인 상태면
 			String userId = (String)session.getAttribute("user");
 			model.addAttribute("userId", userId);
-			userDB userdb = userservice.finduserById(userId);
-			model.addAttribute("userDB", userdb);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
 		}
 			
 		page -= 1;
@@ -62,7 +64,7 @@ public class BBSController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "bbs/main";
+        return "/bbs/main";
 	}
 	
 	@GetMapping("/write")
@@ -77,14 +79,23 @@ public class BBSController {
     }
 	
 	@GetMapping("/post")
-    public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model) {
+    public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
 		bbsDB bbsdb = bbsservice.getByID(bbsnum);
 		List<commentDB> commentdb = commentservice.getByBbsnum(bbsnum);
 		
 		model.addAttribute("bbsDB", bbsdb);
 		model.addAttribute("commentDB", commentdb);
 		
-        return "bbs/post"; 
+        return "/bbs/post"; 
     }
 	
 	@GetMapping("/signup")
@@ -109,11 +120,6 @@ public class BBSController {
 		return userservice.finduser(id);
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "bbs/login";
-	}
-	
 	@PostMapping("/join_clear")
 	public String join_clear(@RequestParam String id,
 							 @RequestParam String pwd) {
@@ -128,6 +134,7 @@ public class BBSController {
 							  HttpSession session) {
 		if(userservice.logincheck(id, pwd))
 			session.setAttribute("user", id);
+
 		return "redirect:/main";
 	}
 	
@@ -159,10 +166,19 @@ public class BBSController {
 	
 	@PostMapping("/introInsert")
     public ResponseEntity<String> introInsert(@RequestParam String userid, @RequestParam String intro) {
-		System.out.println("#######" + userid);
-		System.out.println("#######" + intro);
         userservice.updateIntro(userid, intro);
         return new ResponseEntity<>("한줄 소개 등록 완료", HttpStatus.OK);
     }
 	
+	@PostMapping("/changeId")
+	public ResponseEntity<String> changeId(@RequestParam String beforeid, @RequestParam String afterid, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		session.invalidate();
+		
+		userservice.updateId(beforeid, afterid);
+		bbsservice.ChangeUserId(beforeid, afterid);
+		commentservice.ChangeUserId(beforeid, afterid);
+		
+        return new ResponseEntity<>("아이디 변경 완료", HttpStatus.OK);
+    }
 }

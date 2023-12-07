@@ -50,4 +50,24 @@ public class userServiceImpl implements userService {
 		userrepository.save(userDB);
 		}
 	}
+	
+	public void updateId(String beforeid, String afterid) {
+		Optional<userDB> userOptional = userrepository.findById(beforeid);
+		
+		if (userOptional.isPresent()) {
+			userDB oldUser = userOptional.get();
+
+	        // 새로운 엔터티를 생성하고 이전 엔터티의 데이터를 복사
+	        userDB newUser = new userDB();
+	        newUser.setId(afterid);
+	        newUser.setPwd(oldUser.getPwd());
+	        newUser.setIntroduce(oldUser.getIntroduce());
+
+	        // 새로운 엔터티를 저장
+	        userrepository.save(newUser);
+
+	        // 이전 엔터티를 삭제 (선택 사항)
+	        userrepository.deleteById(beforeid);
+		}
+	}	
 }

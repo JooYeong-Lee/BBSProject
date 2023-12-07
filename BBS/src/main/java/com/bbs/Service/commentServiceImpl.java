@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bbs.DB.bbsDB;
 import com.bbs.DB.commentDB;
 import com.bbs.Repository.commentRepository;
 
@@ -26,5 +25,13 @@ public class commentServiceImpl implements commentService {
 	}
 	public List<commentDB> getByBbsnum(Long bbsnum) {
 	    return commentrepository.findByBbsnum(bbsnum);
+	}
+	public void ChangeUserId(String beforeid, String afterid) {
+		List<commentDB> commentlist = commentrepository.findById(beforeid);
+		
+		for(commentDB comment : commentlist) {
+			comment.setId(afterid);
+		}
+		commentrepository.saveAll(commentlist);
 	}
 }

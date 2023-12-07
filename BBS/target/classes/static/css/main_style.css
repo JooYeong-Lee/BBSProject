@@ -494,3 +494,8 @@ button {
 #paging_box a.current { 
     color: black;
 }
+
+.change_txt {
+	font-size: 15px;
+	font-family: 'LINESeedKR';	
+}

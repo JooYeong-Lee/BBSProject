@@ -1,5 +1,7 @@
 package com.bbs.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,5 +31,14 @@ public class bbsServiceImpl implements bbsService {
 	
 	public bbsDB getByID(Long id) {
 	    return bbsrepository.findById(id).orElseThrow();
+	}
+	
+	public void ChangeUserId(String beforeid, String afterid) {
+		List<bbsDB> bbslist = bbsrepository.findById(beforeid);
+		
+		for(bbsDB bbs : bbslist) {
+			bbs.setId(afterid);
+		}
+		bbsrepository.saveAll(bbslist);
 	}
 }

@@ -8,4 +8,5 @@ public interface userService {
 	public boolean logincheck(String id, String pwd);
 	public void insertuser(String id, String pwd);
 	public void updateIntro(String id, String intro);
+	public void updateId(String beforeid, String afterid);
 }

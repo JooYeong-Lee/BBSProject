@@ -40,9 +40,9 @@
 			<!-- id 수정 버튼 눌렀을때 나오는 div -->
 			<div class="id_change">
 				<input type="text" class="id_change_box" placeholder="ID">
-				<button class="change_check_btn">중복 확인</button>
+				<button class="change_check_btn" onclick="checkDuplicate()">중복 확인</button>
 				<p class="change_txt"></p>
-				<button class="change_submit_btn" onclick="idChange_submit()" disabled>아이디 변경</button>
+				<button class="change_submit_btn" th:data-id="${userId}" onclick="idChange_submit(this)" disabled>아이디 변경</button>
 			</div>
 			
 			<!-- 한줄소개 수정 버튼 눌렀을때 나오는 div -->

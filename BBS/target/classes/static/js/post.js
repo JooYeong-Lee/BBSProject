@@ -66,3 +66,126 @@ function click_comment_btn(button) {
 	    console.error('댓글 등록중 오류 발생');
 	});
 }
+
+function idChange() {
+	var div_ID = document.querySelector(".line1");
+	var div_Intro = document.querySelector(".line2");
+	var div_Change = document.querySelector(".id_change");
+	var submit_btn = document.querySelector(".change_submit_btn")
+	
+	div_ID.style.display="none";
+	div_Intro.style.display="none";
+	div_Change.style.display="block";
+	submit_btn.disabled=true;
+}
+
+function introUpdate(){
+	var div_ID = document.querySelector(".line1");
+	var div_Intro = document.querySelector(".line2");
+	var div_Change = document.querySelector(".intro_change");
+	
+	div_ID.style.display="none";
+	div_Intro.style.display="none";
+	div_Change.style.display="block";
+}
+
+function idChange_submit(button){
+	var afterid = document.querySelector(".id_change_box");
+	var beforeid = button.getAttribute('data-id');
+	
+	fetch('/changeId', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	    },
+	    body: 'beforeid=' + encodeURIComponent(beforeid) + '&afterid=' + encodeURIComponent(afterid.value),
+	})
+	.then(response => {
+	    if (!response.ok) {
+	        throw new Error('아이디 변경중 오류 발생');
+	    }
+	    return response.text();
+	})
+	.then(data => {
+	    console.log('아이디 변경 완료');
+	})
+	.catch(error => {
+	    console.error('아이디 변경중 오류 발생');
+	});
+	setTimeout(function () {
+      location.reload();
+    }, 500);
+}
+
+function checkDuplicate(){
+	var userId = document.querySelector('.id_change_box');
+    var change_txt = document.querySelector('.change_txt');
+    var submit_btn = document.querySelector('.change_submit_btn');
+    
+    //길이 제한
+	if (userId.value.length < 5 || userId.value.length > 15) {
+        change_txt.innerText = "5~15글자 이내로 설정해주세요"
+        change_txt.style.color = "red";
+        submit_btn.disabled = true;
+        return; // 길이가 범위를 벗어나면 검증 중단
+    } else {
+		change_txt.innerText = "";
+    }
+	
+	var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/check_id', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var ck = JSON.parse(xhr.responseText);
+                if (ck == false) {
+                    change_txt.innerText = "사용중인 아이디입니다.";
+                    change_txt.style.color = "red";
+                    submit_btn.disabled = true;
+                } else {
+                    change_txt.innerText = "사용가능한 아이디입니다.";
+                    change_txt.style.color = "green";
+                    userId.readOnly = true;
+                    submit_btn.disabled = false;
+                }
+            } else {
+                alert("에러가 발생하였습니다.");
+            }
+        }
+    };
+    xhr.send('id=' + encodeURIComponent(userId.value));
+}
+
+function introUpdate_submit(button){
+	var intro = document.querySelector(".intro_change_box");
+	var userid = button.getAttribute('data-id');
+	
+    if(intro.value.trim() === ""){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	
+	fetch('/introInsert', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	    },
+	    body: 'userid=' + encodeURIComponent(userid) + '&intro=' + encodeURIComponent(intro.value),
+	})
+	.then(response => {
+	    if (!response.ok) {
+	        throw new Error('한줄 소개 등록중 오류 발생');
+	    }
+	    return response.text();
+	})
+	.then(data => {
+	    console.log('한줄 소개 등록 완료');
+	})
+	.catch(error => {
+	    console.error('한줄 소개 등록중 오류 발생');
+	});
+	setTimeout(function () {
+      location.reload();
+    }, 100);
+}

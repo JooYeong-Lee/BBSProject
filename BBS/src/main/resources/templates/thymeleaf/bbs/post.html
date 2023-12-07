@@ -10,7 +10,7 @@
 
 <body>
     <div id="content">
-         <div id="left_page" th:if="${session.user == null}">
+        <div id="left_page" th:if="${session.user == null}">
 			<!-- 로그인 안돼있을때 보여지는 div -->
 			<form action="/login_clear" method="post">
 				<div class="login-box">
@@ -30,11 +30,25 @@
 			<img src="/imgs/logout.png" alt="Logout" class="logout-btn" onclick="logOut()">
 			<div class="line1">
 				<p class="big_title" th:text="${session.user}"></p>
-				<a href="#">수정</a>
+				<a href="#" onclick="idChange()">수정</a> <!-- 아이디 수정하면 컨트롤러에서 테이블별로 id 다 찾아서 수정해줘야함 -->
 			</div>
 			<div class="line2">
-				<p class="bio">한줄 소개 입니다.</p>
-				<a href="#">수정</a>
+				<p class="bio" th:text="${userDB.introduce}">한줄 소개 입니다.</p>
+				<a href="#" onclick="introUpdate()">수정</a>
+			</div>
+			
+			<!-- id 수정 버튼 눌렀을때 나오는 div -->
+			<div class="id_change">
+				<input type="text" class="id_change_box" placeholder="ID">
+				<button class="change_check_btn" onclick="checkDuplicate()">중복 확인</button>
+				<p class="change_txt"></p>
+				<button class="change_submit_btn" th:data-id="${userId}" onclick="idChange_submit(this)" disabled>아이디 변경</button>
+			</div>
+			
+			<!-- 한줄소개 수정 버튼 눌렀을때 나오는 div -->
+			<div class="intro_change">
+				<input type="text" class="intro_change_box" placeholder="한줄 소개 입력">
+				<button class="intro_submit_btn" th:data-id="${userId}" th:onclick="introUpdate_submit(this)">변경</button>
 			</div>
 			<img src="/imgs/write.png" alt="Write" class="write-btn" onclick="writePost()">
         </div>
