@@ -552,3 +552,14 @@ button {
 #file-input {
     display: none;
 }
+
+.image-box{
+	display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-box img {
+	width: 300px;
+	height: 250px;
+}

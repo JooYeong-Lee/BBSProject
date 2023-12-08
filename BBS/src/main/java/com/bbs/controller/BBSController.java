@@ -91,9 +91,12 @@ public class BBSController {
 			}
 		}
 		bbsDB bbsdb = bbsservice.getByID(bbsnum);
+		List<String> ImgExtension = bbsservice.getImgExtension(bbsdb, bbsdb.getFilecount());
+		
 		List<commentDB> commentdb = commentservice.getByBbsnum(bbsnum);
 		
 		model.addAttribute("bbsDB", bbsdb);
+		model.addAttribute("ImgExtension", ImgExtension);
 		model.addAttribute("commentDB", commentdb);
 		
         return "/bbs/post"; 
@@ -150,14 +153,22 @@ public class BBSController {
 				              @RequestParam String title,
 				              @RequestParam String content,
 				              @RequestParam String fontsize,
-				              @RequestParam("SelectFile") MultipartFile file,
+				              @RequestParam("SelectFile") MultipartFile[] files,
 				              HttpServletRequest req) {
+		int filename = 0;
 		LocalDateTime time = LocalDateTime.now();
 		String timestr = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		
 		String userId = (String)req.getSession(false).getAttribute("user");
 		
-		bbsservice.insertbbs(category, content, timestr, userId, title, fontsize);
+		//게시글 이미지 등록
+		for(MultipartFile file : files) {
+			if(!file.isEmpty()) {
+				filename++;
+				bbsservice.SaveImg(userId, title, file, String.valueOf(filename));
+			}
+		}
+		bbsservice.insertbbs(category, content, timestr, userId, title, fontsize, filename);
 		
 		return "redirect:/main";
 	}

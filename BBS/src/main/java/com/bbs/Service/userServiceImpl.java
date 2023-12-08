@@ -1,6 +1,10 @@
 package com.bbs.Service;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -65,6 +69,18 @@ public class userServiceImpl implements userService {
 	        newUser.setPwd(oldUser.getPwd());
 	        newUser.setIntroduce(oldUser.getIntroduce());
 	        newUser.setImg(oldUser.getImg());
+	        
+	        //유저 이름 바뀌면 bbs 폴더의 유저명도 변경하는 부분
+			String before_userDirPath = "src/main/resources/static/bbs/" + beforeid;
+			String after_userDirPath = "src/main/resources/static/bbs/" + afterid;
+	        Path oldDirectory = Paths.get(before_userDirPath);
+	        Path newDirectory = Paths.get(after_userDirPath);
+	        
+	        try {
+	            Files.move(oldDirectory, newDirectory, StandardCopyOption.REPLACE_EXISTING);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 
 	        // 새로운 엔터티를 저장
 	        userrepository.save(newUser);

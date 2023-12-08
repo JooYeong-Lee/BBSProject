@@ -88,7 +88,15 @@
 					<p class="date" th:text="${bbs.date}">2023.12.01</p>
 				</div>
 				<hr>
-				<div class="in-content"><p th:style="'font-size:' + ${bbs.fontsize}" th:text="${bbs.content}">내용입니다</p></div>
+				<div class="in-content">
+					<p th:style="'font-size:' + ${bbs.fontsize}" th:text="${bbs.content}">내용입니다</p>
+					<div th:if="${bbs.filecount > 0}" class="image-box">
+					    <div th:each="i : ${#numbers.sequence(1, bbs.filecount)}">
+					        <!-- 이미지 경로 구성 -->
+					        <img th:src="@{'/bbs/' + ${bbs.id} + '/' + ${bbs.title} + '/' + ${i} + '.' + ${ImgExtension[i-1]}}" alt="Image ${i}">
+					    </div>
+					</div>
+				</div>
 				<hr>
 				<div class="comment-input">
 					<p class="comment-id" th:text="${session.user}">unknown user</p> <!--여기 아이디 넣기-->

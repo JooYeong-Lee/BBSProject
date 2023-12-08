@@ -230,3 +230,12 @@ function handleFileSelect() {
         }, 300);
     }
 }
+/*
+function addImageExtension(imgElement) {
+    // 이미지 경로에서 확장자 추출
+    var imagePath = imgElement.src;
+    var extension = imagePath.split('.').pop();
+    
+    // 이미지 태그에 확장자 동적으로 추가
+    imgElement.src = imgElement.src + '.' + extension.toLowerCase();
+}*/

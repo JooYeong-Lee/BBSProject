@@ -21,6 +21,7 @@ public class bbsDB {
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	private String fontsize;
+	private int filecount;
 	
 	public Long getBbsnum() {
 		return bbsnum;
@@ -63,6 +64,12 @@ public class bbsDB {
 	}
 	public void setFontsize(String fontsize) {
 		this.fontsize = fontsize;
+	}
+	public int getFilecount() {
+		return filecount;
+	}
+	public void setFilecount(int filecount) {
+		this.filecount = filecount;
 	}
 
 }
