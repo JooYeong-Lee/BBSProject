@@ -58,6 +58,8 @@ public class BBSController {
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
 		int startPage = calcEnd - 9;
 		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+		
+		System.out.println(startPage + " : " +  endPage);
 
         model.addAttribute("bbsDB", bbsPage);
         model.addAttribute("startPage", startPage);

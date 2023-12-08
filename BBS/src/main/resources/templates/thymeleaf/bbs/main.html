@@ -106,7 +106,7 @@
 			            </a>
 			        </li>
 			        
-			        <li th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" class="page_btn">
+			        <li th:if="${startPage <= endPage}" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" class="page_btn">
 			            <a th:href="@{/main(page=${pageNum})}"
 			               th:classappend="${pageNum == currentPage} ? 'current' : ''"
 			               th:text="${pageNum}">
