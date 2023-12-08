@@ -23,10 +23,11 @@
 			</form>
 		</div>
 		
-        <div id="left_page" th:if="${session.user != null}">
+        <div id="left_page" th:if="${session.user != null}" th:style="'background-image:url(' + ${session.userImg} +');'" >
 			<!-- 로그인 돼있을때 보여지는 div -->
 			<!--배경화면 수정 버튼-->
 			<img src="/imgs/camera.png" alt="Camera" class="camera-btn" onclick="editCamera()">
+			<input type="file" id="file-input" accept="image/*" onchange="handleFileSelect()">
 			<img src="/imgs/logout.png" alt="Logout" class="logout-btn" onclick="logOut()">
 			<div class="line1">
 				<p class="big_title" th:text="${session.user}"></p>

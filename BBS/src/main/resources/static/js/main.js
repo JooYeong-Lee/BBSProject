@@ -23,6 +23,7 @@ function openPost(bbsNum) {
 
 function editCamera() {
 	//여기에 배경화면 수정 이벤트 작성
+    document.getElementById('file-input').click();
 }
 
 function logOut() {
@@ -161,4 +162,40 @@ function introUpdate_submit(button){
 	setTimeout(function () {
       location.reload();
     }, 100);
+}
+
+function handleFileSelect() {
+    const fileInput = document.getElementById('file-input');
+    const files = fileInput.files;
+
+    if (files.length === 0) {
+        alert('파일을 선택하세요.');
+        return;
+    } else {
+        //console.log('파일 :', files);
+
+        const formData = new FormData();
+
+        for (let i = 0; i < files.length; i++) {
+            const fileNameWithoutExtension = files[i].name.replace(/\.[^.]+$/, "");
+
+            formData.append('uploadedFiles', new File([files[i]], fileNameWithoutExtension, { type: files[i].type }));
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/UploadImg', true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                //alert('파일 업로드가 완료되었습니다.');
+            } else {
+                //alert('파일 업로드 중 오류가 발생했습니다.');
+            }
+        };
+
+        xhr.send(formData);
+        setTimeout(function () {
+            location.reload();
+        }, 300);
+    }
 }

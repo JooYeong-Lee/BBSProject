@@ -1,7 +1,9 @@
 package com.bbs.Service;
 
+import java.io.IOException;
 import java.util.Optional;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +64,7 @@ public class userServiceImpl implements userService {
 	        newUser.setId(afterid);
 	        newUser.setPwd(oldUser.getPwd());
 	        newUser.setIntroduce(oldUser.getIntroduce());
+	        newUser.setImg(oldUser.getImg());
 
 	        // 새로운 엔터티를 저장
 	        userrepository.save(newUser);
@@ -70,4 +73,21 @@ public class userServiceImpl implements userService {
 	        userrepository.deleteById(beforeid);
 		}
 	}	
+	
+    public void saveImage(String userId, byte[] imageBytes) throws IOException {
+        Optional<userDB> optional = userrepository.findById(userId);
+        
+        if(optional.isPresent()) {
+        	userDB userdb = optional.get();
+            userdb.setImg(imageBytes);
+            userrepository.save(userdb);
+        } else {
+            throw new RuntimeException(userId + " - 해당 아이디가 존재하지않습니다.");
+        }
+    }
+
+    public String convertByteToBase64(byte[] imageData) {
+        byte[] encoded = Base64.encodeBase64(imageData, false);
+        return "data:image/jpeg;base64," + new String(encoded);
+    }
 }

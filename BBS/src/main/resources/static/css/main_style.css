@@ -22,6 +22,8 @@ body {
     background-color: rgb(224, 250, 248);
     border-right: 2px solid black;
     align-items: center;
+    background-size: cover;
+    background-position: center;
     
 }
 
@@ -498,4 +500,8 @@ button {
 .change_txt {
 	font-size: 15px;
 	font-family: 'LINESeedKR';	
+}
+
+#file-input {
+    display: none;
 }

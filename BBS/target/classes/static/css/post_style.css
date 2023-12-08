@@ -22,7 +22,8 @@ body {
     background-color: rgb(224, 250, 248);
     border-right: 2px solid black;
     align-items: center;
-    
+    background-size: cover;
+    background-position: center;
 }
 
 .login-box {
@@ -546,4 +547,8 @@ button {
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+}
+
+#file-input {
+    display: none;
 }

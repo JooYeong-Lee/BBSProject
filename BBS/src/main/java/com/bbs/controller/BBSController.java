@@ -1,5 +1,6 @@
 package com.bbs.controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -58,8 +59,6 @@ public class BBSController {
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
 		int startPage = calcEnd - 9;
 		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
-		
-		System.out.println(startPage + " : " +  endPage);
 
         model.addAttribute("bbsDB", bbsPage);
         model.addAttribute("startPage", startPage);
@@ -134,8 +133,14 @@ public class BBSController {
 	public String login_clear(@RequestParam String id,
 							  @RequestParam String pwd,
 							  HttpSession session) {
-		if(userservice.logincheck(id, pwd))
+		if(userservice.logincheck(id, pwd)) {
 			session.setAttribute("user", id);
+			userDB userdb = userservice.finduserById(id);
+			if(userdb.getImg() != null) {
+				String profile_img = userservice.convertByteToBase64(userdb.getImg());
+				session.setAttribute("userImg", profile_img);
+			}
+		}
 
 		return "redirect:/main";
 	}
@@ -184,4 +189,29 @@ public class BBSController {
 		
         return new ResponseEntity<>("아이디 변경 완료", HttpStatus.OK);
     }
+	
+	@PostMapping(value = "/UploadImg", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<String> UploadImg(@RequestParam("uploadedFiles") MultipartFile uploadedFile, HttpServletRequest req,Model model) {
+	    if (req.getSession(false) != null) {
+	        HttpSession session = req.getSession(false);
+	        String userId = (String) session.getAttribute("user");
+
+	        try {
+	        	byte[] imageBytes = uploadedFile.getBytes();
+	        	userservice.saveImage(userId, imageBytes);
+
+	        	//세션 업데이트
+	        	String imgUrl = userservice.convertByteToBase64(imageBytes);
+	        	session.setAttribute("userImg", imgUrl);
+
+	        	return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
+	        }catch(IOException e) {
+	        	return new ResponseEntity<>("Failed to upload image", HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+
+	    }else {
+	            return new ResponseEntity<>("Session not found", HttpStatus.UNAUTHORIZED);
+	        }
+
+	}
 }
