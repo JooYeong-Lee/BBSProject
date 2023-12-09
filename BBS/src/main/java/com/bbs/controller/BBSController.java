@@ -229,6 +229,7 @@ public class BBSController {
 	    }else {
 	            return new ResponseEntity<>("Session not found", HttpStatus.UNAUTHORIZED);
 	        }
+	}
 
 	@GetMapping("/free")
 	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {

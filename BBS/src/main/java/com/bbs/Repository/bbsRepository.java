@@ -19,7 +19,4 @@ public interface bbsRepository extends JpaRepository<bbsDB, Long> {
 	        "WHERE v.title LIKE '%' || :title || '%' " +
 	        "ORDER BY v.bbs_num DESC", nativeQuery = true)
 	Page<bbsDB> findByTitleContaining(@Param("title") String keyword, Pageable pageable);
-	Page<bbsDB> findByCategory(String category, Pageable pageable);
-	
-	Page<bbsDB> findByTitleContaining(String keyword,Pageable pageable);
 }
