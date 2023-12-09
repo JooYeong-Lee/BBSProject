@@ -45,7 +45,7 @@ public class BBSController {
 	bbsRepository bbsrepository;
 	String page = "";
 	
-	@GetMapping("/main")
+	@GetMapping("main")
     public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		if(session != null) { // 로그인 상태면
@@ -86,7 +86,7 @@ public class BBSController {
     }
 	
 	@GetMapping("/post")
-    public String post(@RequestParam(name = "bbs_num") Long bbsnum, Model model, HttpServletRequest req) {
+    public String post(@RequestParam(name = "bbsnum") Long bbsnum, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		if(session != null) { // 로그인 상태면
 			String userId = (String)session.getAttribute("user");
@@ -310,7 +310,17 @@ public class BBSController {
 	@GetMapping("/search")
 	public String search(Model model,
 	                     @RequestParam("search") String searchKeyword,
-	                     @RequestParam(value = "page", defaultValue = "1") int page) {
+	                     @RequestParam(value = "page", defaultValue = "1") int page,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
 
 	    page -= 1;
 	    //String searchRegex = ".*" + searchKeyword + ".*";

@@ -23,6 +23,8 @@ public class bbsDB {
 	private String fontsize;
 	private int filecount;
 	
+	
+	
 	public Long getBbsnum() {
 		return bbsnum;
 	}

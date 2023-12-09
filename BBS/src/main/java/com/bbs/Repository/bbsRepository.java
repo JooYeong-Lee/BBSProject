@@ -14,7 +14,7 @@ public interface bbsRepository extends JpaRepository<bbsDB, Long> {
 	public List<bbsDB> findById(String id);
 	Page<bbsDB> findByCategory(String category, Pageable pageable);
 	
-	@Query(value = "SELECT v.bbs_num, v.id, v.title, v.category, v.date, v.content " +
+	@Query(value = "SELECT v.bbsnum, v.id, v.title, v.category, v.date, v.content, v.filecount, v.fontsize " +
 	        "FROM bbs_list AS v " +
 	        "WHERE v.title LIKE '%' || :title || '%' " +
 	        "ORDER BY v.bbs_num DESC", nativeQuery = true)

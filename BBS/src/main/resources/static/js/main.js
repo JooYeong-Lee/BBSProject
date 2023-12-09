@@ -49,7 +49,7 @@ function searchTitle() {
 function openPost(bbsNum) {
 	//여기에 게시글 클릭 후 이벤트 작성
     console.log(' bbsNum : ' + bbsNum);
-    window.location.href = '/post?bbs_num=' + bbsNum;
+    window.location.href = '/post?bbsnum=' + bbsNum;
 }
 
 function editCamera() {

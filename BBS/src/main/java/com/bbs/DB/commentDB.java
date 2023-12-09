@@ -20,6 +20,8 @@ public class commentDB {
 	private String comment;
 	private String date;
 	
+	
+	
 	public Long getBbsnum() {
 		return bbsnum;
 	}
