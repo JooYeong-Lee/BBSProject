@@ -84,18 +84,20 @@
 					  </button>
 			    	</div>
 				</form>
-
             </div>
             
-            <div th:if = "${searchDB == null}">
-	            <!-- 게시글 표시 -->
-				<div id="list">
-					<tr th:each = "bbs : ${bbsDB}">
-						<div class="memo" th:onclick="'openPost(' + ${bbs.bbsnum} + ')'">
-					        <p class="memo_title" th:text="${bbs.title}"></p>
-					        <p class="memo_content" th:text="${bbs.content}"></p>
-					    </div>
-				</div>
+	            <div class="bbs-list" th:if="${searchDB == null}">
+		            <!-- 게시글 표시 -->
+					<div id="list">
+						<tr th:each = "bbs : ${bbsDB}">
+							<div class="memo" th:onclick="'openPost(' + ${bbs.bbsnum} + ')'">
+						        <span class="thumbnail" th:if="${bbs.filecount > 0}">
+									<img th:src="@{'/bbs/' + ${bbs.id} + '/' + ${bbs.title} + '/1.' + ${bbs.extension}}">
+								</span>
+						        <span class="memo_title" th:text="${bbs.title}"></span><br>
+						        <span class="memo_content" th:text="${bbs.content}"></span>
+						    </div>
+					</div>
 				
 				<!-- 페이징 -->
 				<div id="paging_box" >

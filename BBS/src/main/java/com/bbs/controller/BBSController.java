@@ -56,10 +56,17 @@ public class BBSController {
 				model.addAttribute("userDB", userdb);
 			}
 		}
-			
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "bbsnum"));	
         Page<bbsDB> bbsPage = bbsservice.getAllBbs(pageable);
+        
+        for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
         
         int currentPage = page + 1;
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);

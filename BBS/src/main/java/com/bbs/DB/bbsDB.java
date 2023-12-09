@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "bbs_list")
@@ -22,8 +23,8 @@ public class bbsDB {
 	private String content;
 	private String fontsize;
 	private int filecount;
-	
-	
+	@Transient
+	private String extension;
 	
 	public Long getBbsnum() {
 		return bbsnum;
@@ -72,6 +73,12 @@ public class bbsDB {
 	}
 	public void setFilecount(int filecount) {
 		this.filecount = filecount;
+	}
+	public String getExtension() {
+		return extension;
+	}
+	public void setExtension(String extension) {
+		this.extension = extension;
 	}
 
 }

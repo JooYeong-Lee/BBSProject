@@ -182,6 +182,11 @@ button {
     align-items: center; 
 }
 
+.bbs-list{
+	width:100%;
+	height:95%;
+}
+
 /*카테고리 버튼(줄 3개 아이콘)*/
 .category-btn {
 	width: 50px;
@@ -327,10 +332,24 @@ button {
 /*각 게시글(1칸)*/
 .memo {
     width: 100%;
-    height: 20.5%;
+    height: 25%;
     padding: 1%;
     border-bottom: 2px solid #ccc;
     cursor: pointer;
+}
+
+.thumbnail {
+	width: 20%;
+	height: 100%;
+	float: right;
+    display: flex;
+    margin-right: 1.5%;
+}
+
+.thumbnail img {
+	width:100%;
+	height:100%;
+	object-fit: cover;
 }
 
 /*게시글 제목*/
@@ -504,4 +523,8 @@ button {
 
 #file-input {
     display: none;
+}
+
+.memo_title {
+	margin-bottom: 8px;
 }

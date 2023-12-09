@@ -16,6 +16,7 @@ public interface bbsService {
 	public void ChangeUserId(String beforeid, String afterid);
 	public void SaveImg(String id, String title, MultipartFile file, String filename);
 	public List<String> getImgExtension(bbsDB bbsdb, int filecount);
+	public String getImgExtensionString(bbsDB bbsdb, int filecount);
 	
 	public Page<bbsDB> findfree(Pageable pageable);
 	public Page<bbsDB> findworries(Pageable pageable);

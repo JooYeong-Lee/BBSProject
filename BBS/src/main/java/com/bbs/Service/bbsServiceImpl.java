@@ -107,6 +107,25 @@ public class bbsServiceImpl implements bbsService {
 		return fileExtensions;
 	}
 	
+	public String getImgExtensionString(bbsDB bbsdb, int filecount) {
+		String filePath = "src/main/resources/static/bbs/" + bbsdb.getId() + "/" + bbsdb.getTitle();
+		File folder = new File(filePath);
+		String extension = null;
+        
+		if (folder.exists() && folder.isDirectory()) {
+			File[] files = folder.listFiles();
+			if (files != null && files.length > 0) {
+		        File firstFile = files[0]; // 첫 번째 파일 가져오기
+
+		        if (firstFile.isFile()) {
+		            String fileName = firstFile.getName();
+		            extension = getFileExtension(fileName);
+		        }
+            }
+		}
+		return extension;
+	}
+	
     private String getFileExtension(String fileName) {
         int lastDotIndex = fileName.lastIndexOf(".");
         if (lastDotIndex > 0) {
