@@ -78,7 +78,7 @@ public class BBSController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "/bbs/main";
+        return "bbs/main";
 	}
 	
 	@GetMapping("write")
@@ -112,12 +112,12 @@ public class BBSController {
 		model.addAttribute("ImgExtension", ImgExtension);
 		model.addAttribute("commentDB", commentdb);
 		
-        return "/bbs/post"; 
+        return "bbs/post"; 
     }
 	
 	@GetMapping("/signup")
 	public String signup() {
-		return "/bbs/signup";
+		return "bbs/signup";
 	}
 	
 	@GetMapping("/logout")
@@ -239,29 +239,27 @@ public class BBSController {
 	}
 
 	@GetMapping("/free")
-	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findfree(pageable);
         
-        int currentPage = page + 1;
-		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
-		int startPage = calcEnd - 9;
-		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
-
-        model.addAttribute("bbsDB", bbsPage);
-        model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "/bbs/main";
-	}
-	
-	@GetMapping("/worries")
-	public String worries(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-		page -= 1;
-		Pageable pageable = PageRequest.of(page, 4);	
-        Page<bbsDB> bbsPage = bbsservice.findworries(pageable);
+        for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
         
         int currentPage = page + 1;
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
@@ -273,14 +271,67 @@ public class BBSController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "/bbs/main";
+        return "bbs/main";
+	}
+	
+	@GetMapping("/worries")
+	public String worries(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
+		page -= 1;
+		Pageable pageable = PageRequest.of(page, 4);	
+        Page<bbsDB> bbsPage = bbsservice.findworries(pageable);
+        
+        for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
+        
+        int currentPage = page + 1;
+		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
+		int startPage = calcEnd - 9;
+		int endPage = Math.min(calcEnd, bbsPage.getTotalPages());
+
+        model.addAttribute("bbsDB", bbsPage);
+        model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPage", bbsPage.getTotalPages());
+        return "bbs/main";
 	}
 	
 	@GetMapping("/secret")
-	public String secret(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String secret(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findsecret(pageable);
+        
+        for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
         
         int currentPage = page + 1;
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
@@ -296,10 +347,27 @@ public class BBSController {
 	}
 	
 	@GetMapping("/promotion")
-	public String promotion(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String promotion(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findpromotion(pageable);
+        
+        for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
         
         int currentPage = page + 1;
 		int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
@@ -311,14 +379,13 @@ public class BBSController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", bbsPage.getTotalPages());
-        return "/bbs/main";
+        return "bbs/main";
 	}
 	
 	@GetMapping("/search")
 	public String search(Model model,
 	                     @RequestParam("search") String searchKeyword,
-	                     @RequestParam(value = "page", defaultValue = "1") int page,HttpServletRequest req) {
-		
+	                     @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		if(session != null) { // 로그인 상태면
 			String userId = (String)session.getAttribute("user");
@@ -333,7 +400,14 @@ public class BBSController {
 	    //String searchRegex = ".*" + searchKeyword + ".*";
 	    Pageable pageable = PageRequest.of(page, 4);
 	    Page<bbsDB> bbsPage = bbsservice.findByTitle(searchKeyword, pageable);
-
+	    
+	    for (bbsDB bbsdb : bbsPage.getContent()) {
+            if (bbsdb.getFilecount() > 0) {
+                String ImgExtension = bbsservice.getImgExtensionString(bbsdb, bbsdb.getFilecount());
+                bbsdb.setExtension(ImgExtension);
+            }
+        }
+	    
 	    int currentPage = page + 1;
 	    int calcEnd = (int)(Math.ceil(currentPage / 10.0) * 10);
 	    int startPage = calcEnd - 9;
@@ -346,7 +420,7 @@ public class BBSController {
 	    model.addAttribute("totalPage", bbsPage.getTotalPages());
 	    model.addAttribute("searchKeyword", searchKeyword);
 
-	    return "/bbs/main";
+	    return "bbs/main";
 	}
 	
 }

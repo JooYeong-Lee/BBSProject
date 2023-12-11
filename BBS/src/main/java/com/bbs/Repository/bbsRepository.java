@@ -17,6 +17,6 @@ public interface bbsRepository extends JpaRepository<bbsDB, Long> {
 	@Query(value = "SELECT v.bbsnum, v.id, v.title, v.category, v.date, v.content, v.filecount, v.fontsize " +
 	        "FROM bbs_list AS v " +
 	        "WHERE v.title LIKE '%' || :title || '%' " +
-	        "ORDER BY v.bbs_num DESC", nativeQuery = true)
+	        "ORDER BY v.bbsnum DESC", nativeQuery = true)
 	Page<bbsDB> findByTitleContaining(@Param("title") String keyword, Pageable pageable);
 }

@@ -24,6 +24,7 @@ function checkPassword() {
         pwd_msg.innerText = "비밀번호가 일치합니다."
         pwd_msg.style.color = "green";
     } else {
+		pwdcheck = false;
         submit_btn.disabled = true;
         pwd_msg.innerText = "비밀번호가 일치하지않습니다."
         pwd_msg.style.color = "red";

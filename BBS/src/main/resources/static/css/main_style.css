@@ -275,6 +275,8 @@ button {
     transform: translateY(-50%);
     margin-left: auto;
     right: 3%;
+	margin-top:40px;
+	margin-right: 30px;
 }
 
 /*검색창 애니메이션*/
