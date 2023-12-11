@@ -45,7 +45,7 @@ public class BBSController {
 	bbsRepository bbsrepository;
 	String page = "";
 	
-	@GetMapping("main")
+	@GetMapping("/main")
     public String main(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		if(session != null) { // 로그인 상태면
@@ -239,7 +239,19 @@ public class BBSController {
 	}
 
 	@GetMapping("/free")
-	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String free(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findfree(pageable);
@@ -258,7 +270,21 @@ public class BBSController {
 	}
 	
 	@GetMapping("/worries")
-	public String worries(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String worries(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
+		
+		
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findworries(pageable);
@@ -277,7 +303,21 @@ public class BBSController {
 	}
 	
 	@GetMapping("/secret")
-	public String secret(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String secret(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
+		
+		
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findsecret(pageable);
@@ -296,7 +336,21 @@ public class BBSController {
 	}
 	
 	@GetMapping("/promotion")
-	public String promotion(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String promotion(Model model, @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		if(session != null) { // 로그인 상태면
+			String userId = (String)session.getAttribute("user");
+			model.addAttribute("userId", userId);
+			if(userId != null) {
+				userDB userdb = userservice.finduserById(userId);
+				model.addAttribute("userDB", userdb);
+			}
+		}
+		
+		
+		
+		
 		page -= 1;
 		Pageable pageable = PageRequest.of(page, 4);	
         Page<bbsDB> bbsPage = bbsservice.findpromotion(pageable);
