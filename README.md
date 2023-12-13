@@ -1,4 +1,4 @@
-# NotePadProject
+# BlogProject
 Spring + 게시판(블로그) 프로젝트
 <br>
 <br>
@@ -40,3 +40,5 @@ Spring + 게시판(블로그) 프로젝트
    
 
 ## 📌 주요 기능
+### ① Main
+
