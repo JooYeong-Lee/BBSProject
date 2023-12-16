@@ -81,6 +81,9 @@ Spring + 게시판(블로그) 프로젝트
 
 
 ### ③게시글 상세
+  ![post](https://github.com/JooYeong-Lee/BlogProject/assets/100755494/069bfc03-fc3f-4569-a675-6fc783eebb45)
+  - 글 상세 내용 확인 가능
+  - 댓글 달기 가능
 
 
 ### ④ 회원가입
