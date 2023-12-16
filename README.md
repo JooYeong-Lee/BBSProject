@@ -42,8 +42,10 @@ Spring + 게시판(블로그) 프로젝트
 ### ① 메인 화면
 #### ⓐ 프로필
   - 로그인 화면
+    ![login](https://github.com/JooYeong-Lee/BlogProject/assets/100755494/badfd0ef-e517-42e2-ac24-29a02d332f34)
     - 로그인이 되어있지 않은 상태라면 로그인 화면과 회원가입 페이지로 이동할 수 있는 태그를 표시
   - 프로필 화면
+    ![main](https://github.com/JooYeong-Lee/BlogProject/assets/100755494/84c41d4c-b110-4638-bd22-69f63e807361)
     - 아이디와 한줄 소개를 표시
       - 아이디와 한줄소개 옆 수정 버튼을 통해 아이디와 한줄소개 수정 가능 - 아이디는 중복확인 거침
     - 좌측 맨 위 카메라 버튼을 통해 배경 사진 변경 가능
@@ -51,6 +53,8 @@ Spring + 게시판(블로그) 프로젝트
     - 우측 맨 아래 글 쓰기 버튼을 통해 게시글 작성 가능
       
 #### ⓑ 게시글 목록
+  ![imglist](https://github.com/JooYeong-Lee/BlogProject/assets/100755494/2bdcd192-7682-4913-9487-51f5cbbc575f)
+
   - 한 개의 게시글에 제목, 내용 미리보기, 선택한 이미지 썸네일을 표시
     
 #### ⓒ 카테고리
