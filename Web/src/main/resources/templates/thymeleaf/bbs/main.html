@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="css/font.css"> <!-- 폰트 css -->
+    <link rel="stylesheet" href="css/main_style.css"> <!-- style css -->
+</head>
+
+<body>
+    <div id="content">
+        <div id="left_page" th:if="${session.user == null}">
+			<!-- 로그인 안돼있을때 보여지는 div -->
+			<form action="/login_clear" method="post">
+				<div class="login-box">
+					<p class="login-txt">LOGIN</p>
+					<input type="text" class="id" name="id" placeholder="ID">
+					<input type="password" class="pwd" name="pwd" placeholder="Password">
+					<button class="login-btn" type="submit">Login</button>
+					<a class=sign-up href="/signup">회원이 아니신가요?</a>
+				</div>
+			</form>
+		</div>
+		
+        <div id="left_page" th:if="${session.user != null}" th:style="'background-image:url(' + ${session.userImg} +');'" >
+			<!-- 로그인 돼있을때 보여지는 div -->
+			<!--배경화면 수정 버튼-->
+			<img src="/imgs/camera.png" alt="Camera" class="camera-btn" onclick="editCamera()">
+			<input type="file" id="file-input" accept="image/*" onchange="handleFileSelect()">
+			<img src="/imgs/logout.png" alt="Logout" class="logout-btn" onclick="logOut()">
+			<div class="line1">
+				<p class="big_title" th:text="${session.user}"></p>
+				<a href="#" onclick="idChange()">수정</a> <!-- 아이디 수정하면 컨트롤러에서 테이블별로 id 다 찾아서 수정해줘야함 -->
+			</div>
+			<div class="line2">
+				<p class="bio" th:text="${userDB.introduce}">한줄 소개 입니다.</p>
+				<a href="#" onclick="introUpdate()">수정</a>
+			</div>
+			
+			<!-- id 수정 버튼 눌렀을때 나오는 div -->
+			<div class="id_change">
+				<input type="text" class="id_change_box" placeholder="ID">
+				<button class="change_check_btn" onclick="checkDuplicate()">중복 확인</button>
+				<p class="change_txt"></p>
+				<button class="change_submit_btn" th:data-id="${userId}" onclick="idChange_submit(this)" disabled>아이디 변경</button>
+			</div>
+			
+			<!-- 한줄소개 수정 버튼 눌렀을때 나오는 div -->
+			<div class="intro_change">
+				<input type="text" class="intro_change_box" placeholder="한줄 소개 입력">
+				<button class="intro_submit_btn" th:data-id="${userId}" th:onclick="introUpdate_submit(this)">변경</button>
+			</div>
+			<img src="/imgs/write.png" alt="Write" class="write-btn" onclick="writePost()">
+        </div>
+
+        <div id="main_page">
+            <div id="header">
+				<div class="category">
+                    <img src="/imgs/category.png" alt="Category" class="category-btn" onclick="toggleCategoryPopup()">
+                    <div class="category-popup" id="categoryPopup">
+                        <div class="category-popup-content">
+                            <a th:href="@{/free(category='free')}">자유</a>
+                            <br>
+                            <a th:href="@{/worries(category='worries')}">고민</a>
+                            <br>
+                            <a th:href="@{/secret(category='secret')}">비밀</a>
+                            <br>
+                            <a th:href="@{/promotion(category='promotion')}">홍보</a>
+                        </div>
+                        <span class="close-btn" onclick="closeCategoryPopup()">×</span>
+                    </div>
+                </div>
+				<div class="header-title" onclick="backToMain()">
+				    <p>BBS</p>
+				</div>
+				<!-- 검색창 -->
+				<form id="searchForm" action = "/search" method="get">
+					<div class="search-box">
+				      <input type="text" class="search-txt" id = "search" name="search" placeholder="Search by title">
+				      <!--<img src="/imgs/search.png" alt="Search Icon" class="search-btn" onclick="searchTitle">-->
+				      <button type = "submit" class="search-btn">
+						  <img src="/imgs/search.png" alt="Search Icon" class="search-btn">
+					  </button>
+			    	</div>
+				</form>
+            </div>
+            
+	        <div class="bbs-list" th:if="${searchDB == null}">
+	            <!-- 게시글 표시 -->
+				<div id="list">
+					<tr th:each = "bbs : ${bbsDB}">
+						<div class="memo" th:onclick="'openPost(' + ${bbs.bbsnum} + ')'">
+					        <span class="thumbnail" th:if="${bbs.filecount > 0}">
+								<img th:src="@{'/bbs/' + ${bbs.id} + '/' + ${bbs.title} + '/1.' + ${bbs.extension}}">
+							</span>
+					        <span class="memo_title" th:text="${bbs.title}"></span><br>
+					        <span class="memo_content" th:text="${bbs.content}"></span>
+					    </div>
+				</div>
+			
+				<!-- 페이징 -->
+				<div id="paging_box" >
+				    <ul>
+				        <li th:if="${currentPage > 1}" class="fir_btn">
+				            <a th:href="@{/main(page=1)}">
+				                <<
+				            </a>
+				        </li>
+				        
+				        <li th:if="${startPage >= 10}" class="pv_btn">
+				            <a th:href="@{/main(page=${startPage - 1})}"
+				            th:classappend="${startPage > 1} ? '' : 'disabled'">
+				                이전
+				            </a>
+				        </li>
+				        
+				        <li th:if="${startPage <= endPage}" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" class="page_btn">
+				            <a th:href="@{/main(page=${pageNum})}"
+				               th:classappend="${pageNum == currentPage} ? 'current' : ''"
+				               th:text="${pageNum}">
+				            </a>
+				        </li>
+				        
+				        <li th:if="${endPage < totalPage}" class="next_btn">
+				            <a th:href="@{/main(page=${startPage + 1})}"
+				               th:classappend="${endPage < totalPage} ? '' : 'disabled'">
+				                다음
+				            </a>
+				        </li>
+				        
+				        <li th:if="${currentPage < totalPage}" class="last_btn">
+				            <a th:href="@{/main(page=${totalPage})}">
+				                >>
+				            </a>
+				        </li>
+				        
+				    </ul>
+				</div>
+			</div>
+
+            <div class="bbs-list" th:if = "${searchDB != null}">
+				<!-- 패아장 게시글 표시 -->
+				<div id="list">
+				<tr th:each = "bbs : ${searchDB}">
+					<div class="memo" th:onclick="'openPost(' + ${bbs.bbsnum} + ')'">
+				        <span class="thumbnail" th:if="${bbs.filecount > 0}">
+							<img th:src="@{'/bbs/' + ${bbs.id} + '/' + ${bbs.title} + '/1.' + ${bbs.extension}}">
+						</span>
+				        <span class="memo_title" th:text="${bbs.title}"></span><br>
+				        <span class="memo_content" th:text="${bbs.content}"></span>
+				    </div>
+				</div>
+			
+				<!-- 페이징 -->
+				<div id="paging_box">
+				    <ul>
+				        <li th:if="${currentPage > 1}" class="fir_btn">
+				            <a th:href="@{/main(page=1)}">
+				                <<
+				            </a>
+				        </li>
+				        
+				        <li th:if="${startPage >= 10}" class="pv_btn">
+				            <a th:href="@{/main(page=${startPage - 1})}"
+				            th:classappend="${startPage > 1} ? '' : 'disabled'">
+				                이전
+				            </a>
+				        </li>
+				        
+				        <li th:if="${startPage <= endPage}" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}" class="page_btn">
+				            <a th:href="@{/main(page=${pageNum})}"
+				               th:classappend="${pageNum == currentPage} ? 'current' : ''"
+				               th:text="${pageNum}">
+				            </a>
+				        </li>
+				        
+				        <li th:if="${endPage < totalPage}" class="next_btn">
+				            <a th:href="@{/main(page=${startPage + 1})}"
+				               th:classappend="${endPage < totalPage} ? '' : 'disabled'">
+				                다음
+				            </a>
+				        </li>
+				        
+				        <li th:if="${currentPage < totalPage}" class="last_btn">
+				            <a th:href="@{/main(page=${totalPage})}">
+				                >>
+				            </a>
+				        </li>
+				        
+				    </ul>
+				</div>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
+
+</html>
